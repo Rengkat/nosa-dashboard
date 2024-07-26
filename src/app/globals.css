@@ -4,3 +4,11 @@
 
 @layer utilities {
 }
+.grid-tableHead {
+  display: grid;
+  grid-template-columns: 1fr 2fr 3fr 2fr 7rem 3fr;
+}
+.grid-table {
+  display: grid;
+  grid-template-columns: 1fr 2fr 3fr 2fr 1fr 3fr;
+}
