@@ -3,6 +3,7 @@ import { RiAdminFill, RiSlideshow4Fill } from "react-icons/ri";
 import { LuGalleryHorizontalEnd } from "react-icons/lu";
 import { GiAchievement } from "react-icons/gi";
 import { FaSuitcase, FaBlogger, FaNewspaper } from "react-icons/fa";
+import { FaPeopleGroup } from "react-icons/fa6";
 
 export const links = [
   {
@@ -19,6 +20,11 @@ export const links = [
     name: "national excos",
     link: "/excos",
     icon: <FaSuitcase />,
+  },
+  {
+    name: "Manage Set Members",
+    link: "/nosa-sets",
+    icon: <FaPeopleGroup />,
   },
   {
     name: "blogs",
@@ -47,6 +53,8 @@ export const links = [
   },
 ];
 export const TableHeading = ["s/No", "name", "email", "phone", "nosa set", "address"];
+export const OfficialTableHeading = ["s/No", "name", "email", "phone", "nosa set", ""];
+
 export const mockData = [
   {
     name: "John Doe",

@@ -1,5 +1,4 @@
-import React from "react";
-
+import { IoIosArrowDown } from "react-icons/io";
 const AddAdmin = () => {
   const dates = [];
 
@@ -11,21 +10,25 @@ const AddAdmin = () => {
   }
 
   return (
-    <div className="bg-gray-200 rounded-md shadow my-10 p-5">
-      <div>
-        <label>Select NOSA Set:</label>
-        <select className="py-4 px-6 border-[1px] border-gray-400 outline-none rounded">
+    <div className="bg-gray-200 rounded-md shadow my-10 px-5 py-10">
+      <div className="relative flex items-center my-5">
+        <select className=" appearance-none cursor-pointer py-4 px-7 border-[1px] border-gray-400 outline-none rounded">
+          <option value="" disabled selected>
+            Select a NOSA Set
+          </option>
           {dates.map((date) => (
-            <option key={date} value={date.value}>
+            <option key={date.value} value={date.value}>
               {date.nosaSet}
             </option>
           ))}
         </select>
       </div>
-      <div className="flex justify-center gap-10">
-        <button className="bg-red-700 text-white py-3 px-6 shadow rounded">
+
+      <Form />
+      <div className="flex justify-end gap-10 my-10">
+        {/* <button className="bg-red-700 text-white py-3 px-6 shadow rounded">
           Remove As Set Admin
-        </button>
+        </button> */}
         <button className="bg-primary-500 text-white py-3 px-6 shadow rounded">
           Make Set Admin
         </button>
@@ -35,3 +38,30 @@ const AddAdmin = () => {
 };
 
 export default AddAdmin;
+
+export const Form = () => {
+  return (
+    <div className="flex items-center gap-10">
+      <div className="flex items-center gap-3 w-1/2">
+        <select className="appearance-none cursor-pointer py-4 px-7 border-[1px] border-gray-400 outline-none rounded w-full">
+          <option value="" disabled selected>
+            Select Full Name
+          </option>
+        </select>
+      </div>
+
+      <div className="flex items-center gap-3 w-1/2">
+        <input
+          placeholder="Email"
+          type="email"
+          className="py-4 px-7 border-[1px] border-gray-400 outline-none rounded w-[70%]"
+        />
+        <input
+          placeholder="Phone"
+          type="text"
+          className="py-4 px-7 border-[1px] border-gray-400 outline-none rounded w-[70%]"
+        />
+      </div>
+    </div>
+  );
+};

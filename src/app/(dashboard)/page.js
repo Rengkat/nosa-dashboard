@@ -1,6 +1,8 @@
 import { Fragment } from "react";
 import { mockData, TableHeading } from "../_utils/page";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
+import SubHeading from "../components/SubHeading";
+
 export default function Home() {
   return (
     <main className=" bg-primary">
@@ -10,9 +12,10 @@ export default function Home() {
         <div className=" size-64 bg-gray-200 rounded "></div>
         <div className=" size-64 bg-gray-200 rounded "></div>
       </div>
+      <SubHeading text={"NOSA Members"} isButton={true} buttonText={"Add a Member"} />
       {/* table */}
+
       <div className=" bg-gray-200 rounded w-full my-5 p-8">
-        <div className="text-2xl font-bold text-gray-600 w-1/2 py-5">All Nosa Members</div>
         <div className="flex justify-center mt-[2rem]">
           <input
             type="text"
@@ -38,7 +41,7 @@ export default function Home() {
                 <div
                   className="grid-table border-b-[1px] py-2 border-gray-300 even:bg-gray-300  hover:opacity-[60%] cursor-pointer"
                   key={user.phone}>
-                  <div className="mt-2">{i + 1}</div>
+                  <div className="mt-2 pl-5">{i + 1}</div>
                   <div>{user?.name}</div>
                   <div>{user?.email}</div>
                   <div>{user?.phone}</div>
