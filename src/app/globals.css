@@ -32,5 +32,5 @@
 .grid-set-table {
   display: grid;
   grid-template-columns: 1fr 2fr 3fr 2fr 3fr 1fr;
-  /* background-color: #0000005f; */
+  /* background-color: #00000061; */
 }

@@ -26,11 +26,7 @@ export const links = [
     link: "/nosa-sets",
     icon: <FaPeopleGroup />,
   },
-  {
-    name: "blogs",
-    link: "/blogs",
-    icon: <FaBlogger />,
-  },
+
   {
     name: "news",
     link: "/news",
