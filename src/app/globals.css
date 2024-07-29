@@ -20,3 +20,17 @@
   display: grid;
   grid-template-columns: 1fr 2fr 3fr 2fr 1fr 1fr;
 }
+.pending-grid {
+  display: grid;
+  grid-template-columns: 3rem 2fr 2fr 2fr 4fr;
+  align-items: center;
+}
+.grid-set-tableHead {
+  display: grid;
+  grid-template-columns: 1fr 2fr 3fr 2fr 3fr 1fr;
+}
+.grid-set-table {
+  display: grid;
+  grid-template-columns: 1fr 2fr 3fr 2fr 3fr 1fr;
+  /* background-color: #0000005f; */
+}

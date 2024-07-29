@@ -2,7 +2,7 @@ import { mockData, OfficialTableHeading } from "@/app/_utils/page";
 import AddAdmin from "@/app/components/AddAdmin";
 import SubHeading from "@/app/components/SubHeading";
 import React, { Fragment } from "react";
-import { MdDelete } from "react-icons/md";
+import { MdDelete, MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 
 const SetAdmin = () => {
   return (
@@ -40,6 +40,15 @@ const SetAdmin = () => {
               </div>
             );
           })}
+        </div>
+        <div className="w-full flex justify-end my-10 items-center">
+          <button className="py-2 px-4 rounded shadow">
+            <MdNavigateBefore fontSize={30} />
+          </button>
+          <span className="font-semibold px-2">3</span>
+          <button className="py-2 px-4 rounded shadow bg-primary-500 text-white">
+            <MdNavigateNext fontSize={30} />
+          </button>
         </div>
       </div>
     </div>
