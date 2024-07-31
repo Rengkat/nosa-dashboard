@@ -7,7 +7,7 @@ import { MdDelete, MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 const News = () => {
   return (
     <div>
-      <SubHeading text={"News Update"} buttonText={"Add a News"} isButton={true} />
+      <SubHeading text={"Blogs/ News Update"} buttonText={"Add a Blog or News"} isButton={true} />
       <div className="bg-gray-200 rounded-md shadow my-10 p-5">
         <div className="grid-news text-xl font-semibold capitalize py-5 my-2 border-b-2 border-gray-400">
           {newsHeadings.map((head, i) => {
@@ -44,14 +44,22 @@ const News = () => {
             );
           })}
         </div>
-        <div className="w-full flex justify-end my-10 items-center">
-          <button className="py-2 px-4 rounded shadow">
-            <MdNavigateBefore fontSize={30} />
-          </button>
-          <span className="font-semibold px-2">3</span>
-          <button className="py-2 px-4 rounded shadow bg-primary-500 text-white">
-            <MdNavigateNext fontSize={30} />
-          </button>
+        <div className="flex gap-5 items-center">
+          <div className="flex items-center gap-3">
+            <label>Blogs</label> <input type="checkbox" className="size-5" />
+          </div>
+          <div className="flex items-center gap-3">
+            <label>News</label> <input type="checkbox" className="size-5" />
+          </div>
+          <div className="w-full flex justify-end my-10 items-center">
+            <button className="py-2 px-4 rounded shadow">
+              <MdNavigateBefore fontSize={30} />
+            </button>
+            <span className="font-semibold px-2">3</span>
+            <button className="py-2 px-4 rounded shadow bg-primary-500 text-white">
+              <MdNavigateNext fontSize={30} />
+            </button>
+          </div>
         </div>
       </div>
     </div>

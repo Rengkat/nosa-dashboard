@@ -7,7 +7,7 @@ import { MdDelete, MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 const Gallery = () => {
   return (
     <div>
-      <SubHeading text={"Gallery"} />
+      <SubHeading text={"Gallery"} buttonText={"Add to Gallery"} isButton={true} />
 
       <div className="bg-gray-200 rounded-md shadow my-10 p-5">
         <div className="grid-gallery text-xl font-semibold capitalize py-5 my-2 border-b-2 border-gray-400">

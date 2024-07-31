@@ -28,8 +28,8 @@ export const links = [
   },
 
   {
-    name: "news",
-    link: "/news",
+    name: "Blogs/ News",
+    link: "/blogsAndNews",
     icon: <FaNewspaper />,
   },
   {
