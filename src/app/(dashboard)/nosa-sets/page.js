@@ -7,7 +7,7 @@ const Sets = () => {
     <div>
       <div className="flex items-center my-5">
         <select className="bg-primary-500 text-white appearance-none cursor-pointer py-4 px-7 border-[1px] border-gray-400 outline-none rounded">
-          <option value="" disabled selected>
+          <option disabled selected>
             Select a NOSA Set
           </option>
           {dates.map((date) => (

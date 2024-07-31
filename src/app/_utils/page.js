@@ -51,7 +51,8 @@ export const links = [
 export const TableHeading = ["s/No", "name", "email", "phone", "nosa set", "address"];
 export const OfficialTableHeading = ["s/No", "name", "post", "phone", "nosa set", ""];
 export const SetTableHeading = ["s/No", "name", "email", "phone", "address", "status"];
-
+export const newsHeadings = ["s/No", "image", "title", "date", ""];
+export const galleryHeadings = ["s/No", "image", "title", "category", "date", ""];
 export const mockData = [
   {
     name: "John Doe",

@@ -34,3 +34,11 @@
   grid-template-columns: 1fr 2fr 3fr 2fr 3fr 1fr;
   /* background-color: #00000061; */
 }
+.grid-news {
+  display: grid;
+  grid-template-columns: 5rem 2fr 3fr 1fr 1fr;
+}
+.grid-gallery {
+  display: grid;
+  grid-template-columns: 5rem 2fr 2fr 1fr 1fr 5rem;
+}
