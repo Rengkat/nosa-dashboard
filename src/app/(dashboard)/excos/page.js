@@ -7,7 +7,12 @@ import { MdDelete, MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 const Excos = () => {
   return (
     <div>
-      <SubHeading text={"National Excos"} buttonText={"Add An Exco"} isButton={true} />
+      <SubHeading
+        text={"National Excos"}
+        buttonText={"Add An Exco"}
+        isButton={true}
+        isLink={false}
+      />
       <div>
         <AddAdmin />
       </div>

@@ -1,4 +1,5 @@
 import { mockData, SetTableHeading } from "@/app/_utils/page";
+import SubHeading from "@/app/components/SubHeading";
 import Link from "next/link";
 import React, { Fragment } from "react";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
@@ -6,6 +7,14 @@ import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 const SpecificSet = ({ params }) => {
   return (
     <div>
+      <SubHeading
+        text={""}
+        isButton={false}
+        isLink={true}
+        link={"/nosa-sets"}
+        buttonText={"Back to Select Set"}
+      />
+
       <div className="bg-gray-200 p-5 shadow rounded mt-10">
         <div className="font-bold text-xl ">Pending Set {params.nosaSet} Requests</div>
         <div className="my-5">

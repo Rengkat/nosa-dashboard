@@ -1,13 +1,14 @@
 import { IoIosArrowDown } from "react-icons/io";
+import { dates } from "../_utils/page";
 const AddAdmin = () => {
-  const dates = [];
+  // const dates = [];
 
-  for (let i = 1978; i <= 2050; i++) {
-    dates.push({
-      nosaSet: `NOSA ${i}`,
-      value: `${i}`,
-    });
-  }
+  // for (let i = 1978; i <= 2050; i++) {
+  //   dates.push({
+  //     nosaSet: `NOSA ${i}`,
+  //     value: `${i}`,
+  //   });
+  // }
 
   return (
     <div className="bg-gray-200 rounded-md shadow my-10 px-5 py-10">

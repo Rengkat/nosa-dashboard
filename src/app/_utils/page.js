@@ -2,9 +2,10 @@ import { MdDashboardCustomize, MdGroups } from "react-icons/md";
 import { RiAdminFill, RiSlideshow4Fill } from "react-icons/ri";
 import { LuGalleryHorizontalEnd } from "react-icons/lu";
 import { GiAchievement } from "react-icons/gi";
-import { FaSuitcase, FaBlogger, FaNewspaper } from "react-icons/fa";
+import { FaSuitcase, FaBlogger, FaNewspaper, FaLayerGroup } from "react-icons/fa";
 import { FaPeopleGroup } from "react-icons/fa6";
-
+import { IoIosPeople } from "react-icons/io";
+import { MdEmojiEvents } from "react-icons/md";
 export const links = [
   {
     name: "dashboard",
@@ -136,10 +137,58 @@ export const mockData = [
   },
 ];
 export const dates = [];
-
-for (let i = 1978; i <= 2050; i++) {
-  dates.push({
-    nosaSet: `NOSA ${i}`,
-    value: `${i}`,
-  });
+const date = new Date();
+const month = date.getMonth();
+const currentYear = date.getFullYear();
+if (month + 1 > 8) {
+  for (let i = 1978; i <= currentYear; i++) {
+    dates.push({
+      nosaSet: `NOSA Set ${i}`,
+      value: `${i}`,
+    });
+  }
+} else {
+  for (let i = 1978; i < currentYear; i++) {
+    dates.push({
+      nosaSet: `NOSA Set ${i}`,
+      value: `${i}`,
+    });
+  }
 }
+export const employmentStatus = [
+  {
+    status: "Unemployed",
+    value: "unemployed",
+  },
+  {
+    status: "Employed",
+    value: "employed",
+  },
+  {
+    status: "Self Employed",
+    value: "selfEmployed",
+  },
+];
+export const dashboardStats = [
+  {
+    name: "NOSA Members",
+    number: 484,
+    icon: <IoIosPeople />,
+  },
+  {
+    name: "NOSA sets",
+    number: 45,
+    icon: <FaLayerGroup />,
+  },
+  {
+    name: "Blog Posts/ News",
+    number: 2,
+    icon: <FaBlogger />,
+  },
+
+  {
+    name: "Events",
+    number: 8,
+    icon: <MdEmojiEvents />,
+  },
+];

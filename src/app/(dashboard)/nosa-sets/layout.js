@@ -4,7 +4,7 @@ import React from "react";
 const SetLayout = ({ children }) => {
   return (
     <div className="relative">
-      <SubHeading text={"Manage Set Members"} isButton={true} buttonText={"Back to Select Set"} />
+      <SubHeading text={"Manage Set Members"} isButton={false} buttonText={"Back to Select Set"} />
       <div>{children}</div>
     </div>
   );

@@ -1,18 +1,37 @@
 import { Fragment } from "react";
-import { mockData, TableHeading } from "../_utils/page";
-import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
+import { dashboardStats, mockData, TableHeading } from "../_utils/page";
+import { MdNavigateNext, MdNavigateBefore, MdLeaderboard } from "react-icons/md";
 import SubHeading from "../components/SubHeading";
-
+import { IoIosPeople } from "react-icons/io";
+import { FaNewspaper } from "react-icons/fa";
+const me = [2, 3, 4, 6];
 export default function Home() {
   return (
     <main className=" bg-primary">
       <div className="flex justify-between my-5">
-        <div className=" size-64 bg-gray-200 rounded "></div>
-        <div className=" size-64 bg-gray-200 rounded "></div>
-        <div className=" size-64 bg-gray-200 rounded "></div>
-        <div className=" size-64 bg-gray-200 rounded "></div>
+        {dashboardStats.map((stat, i) => {
+          return (
+            <Fragment key={i}>
+              <div className="w-64 bg-gray-200 rounded p-5 ">
+                <div className="flex items-center gap-5">
+                  <div className=" text-2xl size-[3rem] bg-[#289fe073] text-[#28a0e0] rounded-full grid place-items-center">
+                    {stat.icon}
+                  </div>
+                  <div className="text-2xl">{stat.number}</div>
+                </div>
+                <div className="my-5">{stat.name}</div>{" "}
+              </div>
+            </Fragment>
+          );
+        })}
       </div>
-      <SubHeading text={"NOSA Members"} isButton={true} buttonText={"Add a Member"} />
+      <SubHeading
+        text={"NOSA Members"}
+        isButton={false}
+        buttonText={"Add a Member"}
+        isLink={true}
+        link={"/addMember"}
+      />
       {/* table */}
 
       <div className=" bg-gray-200 rounded w-full my-5 p-8">

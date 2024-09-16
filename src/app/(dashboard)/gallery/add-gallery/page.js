@@ -4,14 +4,14 @@ const AddGallery = () => {
   const num = [1, 2, 3, 4, 5, 6];
   return (
     <div className="w-full gap-5 flex my-5">
-      <div className="w-[70%]">
-        <div className=" bg-gray-200 rounded-md shadow p-5">
+      <div className="w-[100%]">
+        <div className=" bg-gray-200 rounded shadow p-5">
           <div className="flex gap-5">
             <div class="flex w-[30%] ">
               <input id="file-upload" type="file" class="sr-only" />
               <label
                 for="file-upload"
-                class="size-[12rem] cursor-pointer flex items-center justify-center bg-white text-gray-600 rounded">
+                class="w-[20rem] h-[12rem] cursor-pointer flex items-center justify-center bg-white text-gray-600 rounded">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     stroke-linecap="round"
@@ -32,7 +32,7 @@ const AddGallery = () => {
           </div>
         </div>
       </div>
-      <div className="w-[30%] ">
+      {/* <div className="w-[30%] ">
         <div className="bg-gray-200 rounded-md shadow p-5">
           <h3 className="font-semibold py-3">Categories:</h3>
           <div className="flex flex-col">
@@ -53,7 +53,7 @@ const AddGallery = () => {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

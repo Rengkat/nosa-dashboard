@@ -7,7 +7,13 @@ import { MdDelete, MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 const News = () => {
   return (
     <div>
-      <SubHeading text={"Blogs/ News Update"} buttonText={"Add a Blog or News"} isButton={true} />
+      <SubHeading
+        text={"Blogs/ News Update"}
+        buttonText={"Add a Blog or News"}
+        isButton={false}
+        isLink={true}
+        link={"/blogsAndNews/add-news-and-blog"}
+      />
       <div className="bg-gray-200 rounded-md shadow my-10 p-5">
         <div className="grid-news text-xl font-semibold capitalize py-5 my-2 border-b-2 border-gray-400">
           {newsHeadings.map((head, i) => {

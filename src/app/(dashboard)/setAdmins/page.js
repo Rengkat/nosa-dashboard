@@ -5,9 +5,19 @@ import React, { Fragment } from "react";
 import { MdDelete, MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 
 const SetAdmin = () => {
+  // const [isAddAdminForm, setIsAddAdmin] = useState(false);
+  // const handleClick = () => {
+  //   setIsAddAdmin((prev) => !prev);
+  // };
   return (
     <div>
-      <SubHeading text={"Set Admins"} buttonText={"Add a Set Admin"} isButton={true} />
+      <SubHeading
+        text={"Set Admins"}
+        buttonText={"Add a Set Admin"}
+        isButton={false}
+        isLink={true}
+        link={"/addMember"}
+      />
       <div>
         <AddAdmin />
       </div>

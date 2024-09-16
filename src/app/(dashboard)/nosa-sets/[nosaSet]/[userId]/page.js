@@ -1,10 +1,19 @@
 import { dates } from "@/app/_utils/page";
 import { Form } from "@/app/components/AddAdmin";
+import SubHeading from "@/app/components/SubHeading";
 import React from "react";
 
 const UserDetail = ({ params }) => {
   return (
     <div className="w-full bg-gray-200 my-5 p-10 shadow rounded">
+      <SubHeading
+        text={""}
+        isButton={false}
+        isLink={true}
+        link={`/nosa-sets/${params.nosaSet}`}
+        buttonText={`Back to Set ${params.nosaSet}`}
+      />
+
       <div className="flex items-center gap-5 w-full mb-5">
         <input
           type="text"
