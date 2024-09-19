@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import ContentEditor from "./Content";
-
+import dynamic from "next/dynamic";
+const ContentEditor = dynamic(() => import("./Content"), { ssr: false });
 const AddBlog = () => {
   const categories = ["news", "blog", "event"];
   const [content, setContent] = useState("");
