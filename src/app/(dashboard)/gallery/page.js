@@ -16,12 +16,12 @@ const Gallery = () => {
       />
 
       <div className="bg-gray-200 rounded-md shadow my-10 p-5">
-        <div className="grid-gallery text-xl font-semibold capitalize py-5 my-2 border-b-2 border-gray-400">
+        <div className="grid-gallery text-base md:text-xl font-semibold capitalize py-5 my-2 border-b-2 border-gray-400">
           {galleryHeadings.map((head, i) => {
             return (
               <Fragment key={i}>
                 <div
-                  className={`${
+                  className={`truncate max-w-xs ${
                     head !== "s/No" && head !== "date" && head !== "category"
                       ? "ml-[3rem]"
                       : "ml-[1rem]"
@@ -36,13 +36,13 @@ const Gallery = () => {
           {mockData.slice(0, 5).map((user, i) => {
             return (
               <div
-                className="grid-gallery gap-x-5 border-b-[1px] py-3 border-gray-300 cursor-pointer"
+                className="grid-gallery gap-x-5 border-b-[1px] py-3 border-gray-300 cursor-pointer overflow-x-auto"
                 key={i}>
                 <div className="mt-2 pl-5">{i + 1}</div>
                 <div>
                   <Image src={"/Nosa.png"} height={500} width={500} className="rounded-md" />
                 </div>
-                <div className="mx-2">
+                <div className="mx-2 truncate max-w-xs md:max-w-md lg:max-w-none lg:whitespace-normal">
                   Hello! I'm Alexander Rengkat, a Front-End Developer based in Jos, Plateau State,
                   Nigeria, with over 4 years of experience.
                 </div>

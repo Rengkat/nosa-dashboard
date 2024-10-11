@@ -14,7 +14,7 @@ const AddAchievements = () => {
       <div className="w-[100%] my-5">
         <div className=" bg-gray-200 rounded shadow p-10 h-[60vh]">
           <div className="flex gap-5">
-            <div className=" flex flex-col w-[70%] gap-3">
+            <div className=" flex flex-col w-full md:w-[70%] gap-3">
               <input
                 type="text"
                 className="w-full py-3 px-5 outline-none"
