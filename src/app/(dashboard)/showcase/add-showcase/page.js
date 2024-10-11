@@ -1,17 +1,17 @@
 import SubHeading from "@/app/components/SubHeading";
 import React from "react";
 
-const AddGallery = () => {
-  const num = [1, 2, 3, 4, 5, 6];
+const AddShowcase = () => {
   return (
     <>
       <SubHeading
         isLink={true}
-        link={"/gallery"}
-        text={"Add Gallery"}
-        buttonText={"Back to Gallery"}
+        link={"/showcase"}
+        text={"Add Showcase"}
+        buttonText={"Back to Showcase"}
         isButton={false}
       />
+
       <div className="w-full gap-5 flex my-5">
         <div className="w-[100%]">
           <div className=" bg-gray-200 rounded shadow p-5 h-[60vh]">
@@ -40,7 +40,7 @@ const AddGallery = () => {
                   className="w-full py-3 px-5 outline-none"
                   placeholder="Caption"
                 />
-                <button className="bg-primary-500 py-3 px-5 text-white">Add to Gallery</button>
+                <button className="bg-primary-500 py-3 px-5 text-white">Add to Showcase</button>
               </div>
             </div>
           </div>
@@ -50,4 +50,4 @@ const AddGallery = () => {
   );
 };
 
-export default AddGallery;
+export default AddShowcase;

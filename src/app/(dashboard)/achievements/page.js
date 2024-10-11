@@ -7,7 +7,13 @@ import { MdDelete, MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 const Achievements = () => {
   return (
     <div>
-      <SubHeading text={"Achievements"} buttonText={"Add an Achievement"} isButton={true} />
+      <SubHeading
+        text={"Achievements"}
+        buttonText={"Add an Achievement"}
+        isButton={false}
+        isLink={true}
+        link={"achievements/add-achievement"}
+      />
       <div className="bg-gray-200 rounded-md shadow my-10 p-5">
         <div className="grid-news text-xl font-semibold capitalize py-5 my-2 border-b-2 border-gray-400">
           {newsHeadings.map((head, i) => {

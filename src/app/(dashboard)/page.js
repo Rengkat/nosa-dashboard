@@ -4,22 +4,22 @@ import { MdNavigateNext, MdNavigateBefore, MdLeaderboard } from "react-icons/md"
 import SubHeading from "../components/SubHeading";
 import { IoIosPeople } from "react-icons/io";
 import { FaNewspaper } from "react-icons/fa";
-const me = [2, 3, 4, 6];
+
 export default function Home() {
   return (
-    <main className=" bg-primary">
-      <div className="flex justify-between my-5">
+    <main className="bg-primary">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 my-5">
         {dashboardStats.map((stat, i) => {
           return (
             <Fragment key={i}>
-              <div className="w-64 bg-gray-200 rounded p-5 ">
+              <div className="bg-gray-200 rounded p-5">
                 <div className="flex items-center gap-5">
-                  <div className=" text-2xl size-[3rem] bg-[#289fe073] text-[#28a0e0] rounded-full grid place-items-center">
+                  <div className="text-2xl size-[3rem] bg-[#289fe073] text-[#28a0e0] rounded-full grid place-items-center">
                     {stat.icon}
                   </div>
                   <div className="text-2xl">{stat.number}</div>
                 </div>
-                <div className="my-5">{stat.name}</div>{" "}
+                <div className="my-5">{stat.name}</div>
               </div>
             </Fragment>
           );
@@ -30,11 +30,11 @@ export default function Home() {
         isButton={false}
         buttonText={"Add a Member"}
         isLink={true}
-        link={"/addMember"}
+        link={"/add-member"}
       />
-      {/* table */}
 
-      <div className=" bg-gray-200 rounded w-full my-5 p-8">
+      {/* Responsive table container */}
+      <div className="bg-gray-200 rounded w-full my-5 p-8 overflow-x-auto">
         <div className="flex justify-center mt-[2rem]">
           <input
             type="text"
@@ -42,35 +42,43 @@ export default function Home() {
             placeholder="Search Nosa member"
           />
         </div>
+
         <div>
           <div className="grid-tableHead text-xl font-semibold capitalize py-5 my-2 border-b-2 border-gray-400">
             {TableHeading.map((head, i) => {
               return (
                 <Fragment key={i}>
-                  <div className={`${head !== "s/No" && head !== "nosa set" ? "ml-[1rem]" : ""} `}>
+                  <div
+                    className={`truncate max-w-xs ${
+                      head !== "s/No" && head !== "nosa set" ? "ml-[1rem]" : ""
+                    } `}>
                     {head}
                   </div>
                 </Fragment>
               );
             })}
           </div>
-          <div className="">
+
+          {/* Table rows */}
+          <div className="text-sm lg:text-base ">
             {mockData.map((user, i) => {
               return (
                 <div
-                  className="grid-table border-b-[1px] py-2 border-gray-300 even:bg-gray-300  hover:opacity-[60%] cursor-pointer"
+                  className="grid-table border-b-[1px] py-2 border-gray-300 even:bg-gray-300 hover:opacity-[60%] cursor-pointer"
                   key={user.phone}>
                   <div className="mt-2 pl-5">{i + 1}</div>
-                  <div>{user?.name}</div>
-                  <div>{user?.email}</div>
-                  <div>{user?.phone}</div>
+                  <div className="truncate max-w-xs">{user?.name}</div>
+                  <div className="truncate max-w-xs">{user?.email}</div>
+                  <div className="truncate max-w-xs">{user?.phone}</div>
                   <div>{user?.nosaSet}</div>
-                  <div>{user?.address}</div>
+                  <div className="truncate max-w-xs">{user?.address}</div>
                 </div>
               );
             })}
           </div>
         </div>
+
+        {/* Pagination */}
         <div className="w-full flex justify-end my-10 items-center">
           <button className="py-2 px-4 rounded shadow">
             <MdNavigateBefore fontSize={30} />

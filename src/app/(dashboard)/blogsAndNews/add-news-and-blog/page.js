@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
 const ContentEditor = dynamic(() => import("./Content"), { ssr: false });
+
 const AddBlog = () => {
   const categories = ["news", "blog", "event"];
   const [content, setContent] = useState("");
@@ -21,7 +22,7 @@ const AddBlog = () => {
   return (
     <div className="w-full gap-5 flex my-5">
       <div className="w-[75%]">
-        <div className=" bg-gray-200 rounded-md shadow p-5">
+        <div className=" bg-gray-200 rounded-md shadow p-5 h-auto">
           <div className="flex gap-5">
             {/* Image Upload */}
             <div className="flex w-[30%]">
@@ -47,7 +48,6 @@ const AddBlog = () => {
 
               {/* Quill Content Editor */}
               <ContentEditor onChange={handleContentChange} />
-
               <button className="bg-primary-500 py-3 px-5 text-white" onClick={handleSubmit}>
                 Publish
               </button>

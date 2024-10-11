@@ -6,42 +6,34 @@ import "quill/dist/quill.snow.css";
 const ContentEditor = ({ onChange }) => {
   const editorRef = useRef(null);
   const [quillInstance, setQuillInstance] = useState(null);
-
   useEffect(() => {
     if (editorRef.current && !quillInstance) {
-      // Ensure Quill is only initialized once
+      // Initialize Quill only if it hasn't been initialized yet
       const quill = new Quill(editorRef.current, {
-        theme: "snow",
+        theme: "snow", // Use the Snow theme
         modules: {
           toolbar: [
             [{ header: [1, 2, 3, false] }],
             ["bold", "italic", "underline", "strike"],
             [{ list: "ordered" }, { list: "bullet" }],
             ["link", "image"],
-            ["clean"],
+            ["clean"], // Clear formatting button
           ],
         },
       });
 
       quill.on("text-change", () => {
-        const content = quill.root.innerHTML;
+        const content = quill.root.innerHTML; // Get content in HTML format
         if (onChange) {
-          onChange(content);
+          onChange(content); // Pass the content to the parent component
         }
       });
 
-      setQuillInstance(quill);
+      setQuillInstance(quill); // Save the instance so it won't reinitialize
     }
-
-    return () => {
-      if (quillInstance) {
-        // Clean up the editor instance when the component unmounts
-        quillInstance.off("text-change");
-      }
-    };
   }, [quillInstance, onChange]);
 
-  return <div ref={editorRef} style={{ height: "300px", background: "white" }}></div>;
+  return <div ref={editorRef} style={{ height: "200px", background: "white" }}></div>; // Create the editor div
 };
 
 export default ContentEditor;

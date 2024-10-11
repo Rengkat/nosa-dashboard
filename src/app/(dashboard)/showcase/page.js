@@ -7,7 +7,13 @@ import { MdDelete, MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 const Showcase = () => {
   return (
     <div>
-      <SubHeading text={"Showcase"} buttonText={"Add a Showcase"} isButton={true} />
+      <SubHeading
+        text={"Showcase"}
+        buttonText={"Add a Showcase"}
+        isButton={false}
+        link={"showcase/add-showcase"}
+        isLink={true}
+      />
       <div className="bg-gray-200 rounded-md shadow my-10 p-5">
         <div className="grid-news text-xl font-semibold capitalize py-5 my-2 border-b-2 border-gray-400">
           {newsHeadings.map((head, i) => {

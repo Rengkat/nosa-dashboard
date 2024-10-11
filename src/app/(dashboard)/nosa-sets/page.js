@@ -11,6 +11,13 @@ const Sets = () => {
   };
   return (
     <div>
+      <SubHeading
+        text={""}
+        isButton={false}
+        isLink={true}
+        link={"add-nosa-set"}
+        buttonText={"Add a NOSA Set"}
+      />
       <div className="flex items-center my-5">
         <select
           onChange={(e) => onSelect(e.target.value)}

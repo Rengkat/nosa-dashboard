@@ -10,7 +10,7 @@ const Gallery = () => {
       <SubHeading
         text={"Gallery"}
         buttonText={"Add to Gallery"}
-        link={"add-gallery"}
+        link={"gallery/add-gallery"}
         isLink={true}
         isButton={false}
       />
