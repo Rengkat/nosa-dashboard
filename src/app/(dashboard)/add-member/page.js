@@ -8,7 +8,6 @@ import Education from "./Education";
 const ProfileDetail = dynamic(() => import("./ProfileContent"), { ssr: false });
 
 const AddMember = () => {
-
   return (
     <div className="w-full bg-gray-200 my-5 p-10 shadow rounded">
       <BasicInfo />
@@ -19,7 +18,7 @@ const AddMember = () => {
       </div>
 
       <div className="flex justify-end my-5">
-        <button className="bg-primary-500 text-white text-xl py-4 px-10 shadow rounded">
+        <button className="bg-primary-500 text-white text-base md:text-xl py-2 md:py-4 px-7 md:px-10 shadow rounded">
           Add Member
         </button>
       </div>

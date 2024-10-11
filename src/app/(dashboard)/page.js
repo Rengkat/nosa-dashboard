@@ -38,7 +38,7 @@ export default function Home() {
         <div className="flex justify-center mt-[2rem]">
           <input
             type="text"
-            className="w-[40%] p-3 rounded outline-none border-[2px] border-gray-300"
+            className="w-[70%] md:w-[40%] p-3 rounded outline-none border-[2px] border-gray-300"
             placeholder="Search Nosa member"
           />
         </div>
@@ -60,7 +60,7 @@ export default function Home() {
           </div>
 
           {/* Table rows */}
-          <div className="text-sm lg:text-base ">
+          <div className="text-sm lg:text-base">
             {mockData.map((user, i) => {
               return (
                 <div

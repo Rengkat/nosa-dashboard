@@ -30,7 +30,7 @@ export const links = [
 
   {
     name: "Blogs/ News",
-    link: "/blogsAndNews",
+    link: "/blogs-news-events",
     icon: <FaNewspaper />,
   },
   {

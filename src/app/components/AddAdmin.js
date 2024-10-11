@@ -12,7 +12,7 @@ const AddAdmin = () => {
 
   return (
     <div className="bg-gray-200 rounded-md shadow my-10 px-5 py-10">
-      <div className="relative flex items-center my-5">
+      <div className="relative my-5">
         <select className=" appearance-none cursor-pointer py-4 px-7 border-[1px] border-gray-400 outline-none rounded">
           <option value="" disabled selected>
             Select a NOSA Set
@@ -26,11 +26,11 @@ const AddAdmin = () => {
       </div>
 
       <Form />
-      <div className="flex justify-end gap-10 my-10">
+      <div className="flex justify-end my-7">
         {/* <button className="bg-red-700 text-white py-3 px-6 shadow rounded">
           Remove As Set Admin
         </button> */}
-        <button className="bg-primary-500 text-white py-3 px-6 shadow rounded">
+        <button className="bg-primary-500 text-white py-3 px-5 md:px-6 shadow rounded">
           Make Set Admin
         </button>
       </div>
@@ -42,8 +42,8 @@ export default AddAdmin;
 
 export const Form = () => {
   return (
-    <div className="flex items-center gap-10">
-      <div className="flex items-center gap-3 w-1/2">
+    <div className="flex flex-col md:flex-row items-center gap-5">
+      <div className="w-full md:w-1/2">
         <select className="appearance-none cursor-pointer py-4 px-7 border-[1px] border-gray-400 outline-none rounded w-full">
           <option value="" disabled selected>
             Select Full Name
@@ -51,7 +51,7 @@ export const Form = () => {
         </select>
       </div>
 
-      <div className="flex items-center gap-3 w-1/2">
+      <div className="flex items-center gap-3 w-full md:w-1/2">
         <input
           placeholder="Email"
           type="email"

@@ -10,7 +10,9 @@ const SubHeading = ({ text, buttonText, isButton, isLink, link }) => {
         </Link>
       )}
       {isButton && (
-        <button className="bg-primary-500 text-white py-3 px-6 shadow rounded">{buttonText}</button>
+        <button className="bg-primary-500 text-white py-2 md:py-3 px-4 md:px-6 shadow rounded">
+          {buttonText}
+        </button>
       )}
     </div>
   );

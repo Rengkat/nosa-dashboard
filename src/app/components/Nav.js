@@ -10,7 +10,7 @@ const Nav = () => {
         <div className="block lg:hidden border-2 border-gray-300 text-primary-500">
           <IoMenu fontSize={40} />
         </div>
-        <div className="size-10 lg:size-12">
+        <div className="size-10 lg:size-10">
           <Image src={"/logo.png"} height={500} width={500} />
         </div>
       </div>

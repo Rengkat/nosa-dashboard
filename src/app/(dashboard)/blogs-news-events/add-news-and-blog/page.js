@@ -20,16 +20,16 @@ const AddBlog = () => {
   };
 
   return (
-    <div className="w-full gap-5 flex my-5">
-      <div className="w-[75%]">
+    <div className="w-full gap-5 flex flex-col lg:flex-row my-5">
+      <div className="w-full md:w-[75%]">
         <div className=" bg-gray-200 rounded-md shadow p-5 h-auto">
-          <div className="flex gap-5">
+          <div className="flex flex-col md:flex-row gap-5">
             {/* Image Upload */}
-            <div className="flex w-[30%]">
+            <div className="flex w-full md:w-[30%]">
               <input id="file-upload" type="file" className="sr-only" />
               <label
                 htmlFor="file-upload"
-                className="size-[12rem] cursor-pointer flex items-center justify-center bg-white text-gray-600 rounded">
+                className="w-full h-[10vh] md:size-[12rem] cursor-pointer flex items-center justify-center bg-white text-gray-600 rounded">
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     strokeLinecap="round"
@@ -56,7 +56,7 @@ const AddBlog = () => {
         </div>
       </div>
 
-      <div className="w-[25%]">
+      <div className="w-full lg:w-[25%]">
         <div className="bg-gray-200 rounded-md shadow p-5">
           <h3 className="font-semibold py-3">Categories:</h3>
           <div className="flex flex-col">

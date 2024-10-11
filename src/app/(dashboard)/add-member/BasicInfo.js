@@ -7,7 +7,7 @@ const BasicInfo = () => {
   // console.log(countries?.data);
   return (
     <div>
-      <div className="flex items-center gap-5 w-full mb-5">
+      <div className="flex items-center flex-col md:flex-row gap-5 w-full mb-5">
         <input
           type="text"
           placeholder="Enter First Name"
@@ -20,13 +20,13 @@ const BasicInfo = () => {
         />
       </div>
       {/* ============================= */}
-      <div className="flex items-center gap-5 w-full mb-5">
+      <div className="flex items-center flex-col md:flex-row gap-5 w-full mb-5">
         <input
           placeholder="Email"
           type="email"
-          className="py-4 px-7 border-[1px] border-gray-400 outline-none rounded w-1/2"
+          className="py-4 px-7 border-[1px] border-gray-400 outline-none rounded w-full md:w-1/2"
         />
-        <div className="flex items-center w-1/2 gap-3">
+        <div className="flex items-center w-full md:w-1/2 gap-3">
           <input
             placeholder="Phone"
             type="text"
@@ -45,8 +45,8 @@ const BasicInfo = () => {
         </div>
       </div>
       {/* ========================== */}
-      <div className="flex items-center gap-5 w-full mb-5">
-        <div className="flex w-1/2 gap-5">
+      <div className="flex flex-col md:flex-row items-center gap-5 w-full mb-5">
+        <div className="flex  w-full md:w-1/2 gap-5">
           <select className="w-1/2 appearance-none cursor-pointer py-4 px-7 border-[1px] border-gray-400 outline-none rounded">
             <option value="" disabled selected>
               Employment Status
@@ -64,7 +64,7 @@ const BasicInfo = () => {
           />
         </div>
 
-        <div className="w-1/2 flex items-center gap-3">
+        <div className="w-full md:w-1/2 flex items-center gap-3">
           <input
             placeholder="Enter Employer (Place of work)"
             type="text"

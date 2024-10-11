@@ -12,15 +12,15 @@ const News = () => {
         buttonText={"Add a Blog or News"}
         isButton={false}
         isLink={true}
-        link={"/blogsAndNews/add-news-and-blog"}
+        link={"/blogs-news-events/add-news-and-blog"}
       />
-      <div className="bg-gray-200 rounded-md shadow my-10 p-5">
+      <div className="bg-gray-200 rounded-md shadow my-10 p-5 overflow-x-auto">
         <div className="grid-news text-xl font-semibold capitalize py-5 my-2 border-b-2 border-gray-400">
           {newsHeadings.map((head, i) => {
             return (
               <Fragment key={i}>
                 <div
-                  className={`${head !== "s/No" && head !== "date" ? "ml-[5rem]" : "ml-[1rem]"} `}>
+                  className={`${head !== "s/No" && head !== "date" ? "ml-[2rem]" : "ml-[1rem]"} `}>
                   {head}
                 </div>
               </Fragment>
@@ -37,7 +37,7 @@ const News = () => {
                 <div>
                   <Image src={"/Nosa.png"} height={500} width={500} className="rounded-md" />
                 </div>
-                <div className="mx-2">
+                <div className="mx-2 truncate max-w-xs md:max-w-md lg:max-w-none lg:whitespace-normal">
                   Hello! I'm Alexander Rengkat, a Front-End Developer based in Jos, Plateau State,
                   Nigeria, with over 4 years of experience.
                 </div>

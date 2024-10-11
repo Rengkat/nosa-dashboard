@@ -14,9 +14,9 @@ const SetAdmin = () => {
       <SubHeading
         text={"Set Admins"}
         buttonText={"Add a Set Admin"}
-        isButton={false}
-        isLink={true}
-        link={"/addMember"}
+        isButton={true}
+        isLink={false}
+        link={""}
       />
       <div>
         <AddAdmin />
