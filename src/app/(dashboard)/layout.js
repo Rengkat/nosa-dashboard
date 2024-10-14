@@ -1,5 +1,6 @@
 import Nav from "../components/Nav";
 import Sidebar from "../components/Sidebar";
+import Toggle from "./Toogle";
 
 export default function DashboardLayout({ children }) {
   return (
@@ -8,9 +9,7 @@ export default function DashboardLayout({ children }) {
         <Nav />
       </nav>
       <div className="mt-[6rem] flex">
-        <div className="w-[20rem] bg-gray-200 fixed left-0 bottom-0 top-[6rem] z-20">
-          <Sidebar />
-        </div>
+        <Toggle />
         <div className="ml-0 lg:ml-[20rem] w-full p-5">{children}</div>
       </div>
     </div>
