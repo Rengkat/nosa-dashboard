@@ -17,13 +17,13 @@ export const links = [
     link: "/set-admins",
     icon: <RiAdminFill />,
   },
+  // {
+  //   name: "national excos",
+  //   link: "/excos",
+  //   icon: <FaSuitcase />,
+  // },
   {
-    name: "national excos",
-    link: "/excos",
-    icon: <FaSuitcase />,
-  },
-  {
-    name: "Manage Set Members",
+    name: "Manage Sets",
     link: "/nosa-sets",
     icon: <FaPeopleGroup />,
   },

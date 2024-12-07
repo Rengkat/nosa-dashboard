@@ -7,13 +7,13 @@ import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 const SpecificSet = ({ params }) => {
   return (
     <div>
-      <SubHeading
+      {/* <SubHeading
         text={""}
         isButton={false}
         isLink={true}
         link={"/nosa-sets"}
         buttonText={"Back to Select Set"}
-      />
+      /> */}
 
       <div className="bg-gray-200 p-5 shadow rounded mt-10 overflow-x-auto">
         <div className="font-bold text-xl ">Pending Set {params.nosaSet} Requests</div>
