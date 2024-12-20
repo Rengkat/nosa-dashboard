@@ -4,13 +4,15 @@ import React, { useState } from "react";
 import { MdOutlineLogin } from "react-icons/md";
 import { useLoginMutation } from "../../../../Redux/services/AuthSlice";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { addAdminDetail } from "../../../../Redux/services/AppSlice";
 const Login = () => {
   const [login, { isLoading }] = useLoginMutation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [notification, setNotification] = useState({ message: "", type: "" });
   const router = useRouter();
-
+  const dispatch = useDispatch();
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email || !password) {
@@ -19,9 +21,14 @@ const Login = () => {
     }
     try {
       const res = await login({ email, password }).unwrap();
-      // router.push('/')
+      dispatch(addAdminDetail(res.user));
+      router.push("/");
     } catch (error) {
-      setNotification({ message: "An error occurred during login.", type: "error" });
+      let errorMessage = "An error occurred during login.";
+      if (error.response && error.response.data && error.response.data.message) {
+        errorMessage = error.response.data.message;
+      }
+      setNotification({ message: errorMessage, type: "error" });
     }
   };
   return (

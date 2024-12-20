@@ -5,16 +5,19 @@ const AppSlice = createSlice({
   name: "appSlice",
   initialState: {
     isSideBarOpen: false,
-    admin: null,
+    isLogin: Boolean(localStorage.getItem("admin")),
+    admin: JSON.parse(localStorage.getItem("admin")) || null,
   },
   reducers: {
     toggleSideBar: (state) => {
       state.isSideBarOpen = !state.isSideBarOpen;
     },
-    getAdminDetail: (state, action) => {
+    addAdminDetail: (state, action) => {
       state.admin = action.payload;
+      localStorage.setItem("user", JSON.stringify(action.payload));
+      state.isLogin = true;
     },
   },
 });
 export default AppSlice.reducer;
-export const { toggleSideBar } = AppSlice.actions;
+export const { toggleSideBar, addAdminDetail } = AppSlice.actions;
