@@ -32,7 +32,7 @@ const Login = () => {
     }
   };
   return (
-    <div className="w-[90%] lg:w-[60%] bg-white rounded-lg shadow-md py-28 px-10">
+    <div className="w-[90%] mx-auto lg:w-[60%] bg-white rounded-lg shadow-md py-28 px-10">
       <div className="w-20 h-24 mx-auto">
         <Image src={"/logo.png"} height={500} width={500} className="object-cover" />
       </div>

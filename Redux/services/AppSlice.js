@@ -2,11 +2,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const AppSlice = createSlice({
-  name: "appSlice",
+  name: "app",
   initialState: {
     isSideBarOpen: false,
-    isLogin: Boolean(localStorage.getItem("admin")),
-    admin: JSON.parse(localStorage.getItem("admin")) || null,
+    isLogin: typeof window !== "undefined" && Boolean(localStorage.getItem("admin")),
+    admin: typeof window !== "undefined" ? JSON.parse(localStorage.getItem("admin")) || null : null,
   },
   reducers: {
     toggleSideBar: (state) => {
@@ -14,10 +14,11 @@ const AppSlice = createSlice({
     },
     addAdminDetail: (state, action) => {
       state.admin = action.payload;
-      localStorage.setItem("user", JSON.stringify(action.payload));
+      localStorage.setItem("admin", JSON.stringify(action.payload));
       state.isLogin = true;
     },
   },
 });
+
 export default AppSlice.reducer;
 export const { toggleSideBar, addAdminDetail } = AppSlice.actions;

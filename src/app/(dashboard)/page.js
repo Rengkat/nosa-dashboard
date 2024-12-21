@@ -4,27 +4,14 @@ import { MdNavigateNext, MdNavigateBefore, MdLeaderboard } from "react-icons/md"
 import SubHeading from "../components/SubHeading";
 import { IoIosPeople } from "react-icons/io";
 import { FaNewspaper } from "react-icons/fa";
+import Stats from "./Stats";
 
-export default function Home() {
+export default async function Home() {
+  const res = await fetch("http://localhost:5000/api/stats", { credentials: "include" });
+
   return (
     <main className="bg-primary">
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 my-5">
-        {dashboardStats.map((stat, i) => {
-          return (
-            <Fragment key={i}>
-              <div className="bg-gray-200 rounded p-5">
-                <div className="flex items-center gap-5">
-                  <div className="text-2xl size-[3rem] bg-[#289fe073] text-[#28a0e0] rounded-full grid place-items-center">
-                    {stat.icon}
-                  </div>
-                  <div className="text-2xl">{stat.number}</div>
-                </div>
-                <div className="my-5">{stat.name}</div>
-              </div>
-            </Fragment>
-          );
-        })}
-      </div>
+      <Stats />
       <SubHeading
         text={"NOSA Members"}
         isButton={false}
