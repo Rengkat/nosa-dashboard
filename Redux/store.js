@@ -3,17 +3,20 @@ import AppSlice from "../Redux/services/AppSlice";
 import { authApiSlice } from "./services/AuthSlice";
 import { statsApiSlice } from "./services/StatsApiSlice";
 import { usersApiSlice } from "./services/UsersApiSlice";
+import { setApiSlice } from "./services/NosaSetApiSlice";
 export const store = configureStore({
   reducer: {
     app: AppSlice,
     [authApiSlice.reducerPath]: authApiSlice.reducer,
     [statsApiSlice.reducerPath]: statsApiSlice.reducer,
     [usersApiSlice.reducerPath]: usersApiSlice.reducer,
+    [setApiSlice.reducerPath]: setApiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
       .concat(authApiSlice.middleware)
       .concat(statsApiSlice.middleware)
-      .concat(usersApiSlice.middleware),
+      .concat(usersApiSlice.middleware)
+      .concat(setApiSlice.middleware),
   devTools: true,
 });
