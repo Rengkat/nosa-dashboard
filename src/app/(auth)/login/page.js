@@ -32,7 +32,8 @@ const Login = () => {
     }
   };
   return (
-    <div className="w-[90%] mx-auto lg:w-[60%] bg-white rounded-lg shadow-md py-28 px-10">
+    <div className="w-full max-w-[80%] mx-auto lg:max-w-[70%] bg-white rounded-lg shadow-md py-20 px-8">
+      {" "}
       <div className="w-20 h-24 mx-auto">
         <Image src={"/logo.png"} height={500} width={500} className="object-cover" />
       </div>
@@ -40,7 +41,7 @@ const Login = () => {
         <h1 className="text-black font-extrabold text-4xl capitalize text-center my-10">
           Login as Admin
         </h1>
-        <form className="w-[90%] lg:w-[40%] mx-auto">
+        <form className="w-full max-w-[50%] mx-auto">
           <input
             onChange={(e) => setEmail(e.target.value)}
             value={email}
