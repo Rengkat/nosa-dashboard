@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NOSA Admin Dashboard Frontend
 
-## Getting Started
+This repository contains the frontend implementation for the **NOSA Admin Dashboard**, built to manage the NOSA (Nakam Old Students Association) web application. NOSA is the alumni network of Nakam Memorial Secondary School, Panyam, Plateau State, Nigeria. The dashboard enables the **Super Admin** and **Set Admins** to manage alumni data, content, and interactions effectively.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The **NOSA Admin Dashboard** includes the following functionalities:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Super Admin Features:
+- **Set Management**: 
+  - Create, update, and delete alumni sets.
+  - Assign and manage Set Admins for each set.
+- **Content Management**: 
+  - Manage blogs, news, and the "About Us" and "About the School" pages.
+- **Member Management**:
+  - Approve or reject membership requests.
+  - View and manage member details across all sets.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Set Admin Features:
+- **Set-Specific Management**:
+  - Manage members, blogs, and events specific to their assigned set.
+  - View statistics and activities within their set.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Shared Features:
+- **Authentication**:
+  - Secure login for Super Admins and Set Admins.
+- **Dashboard Overview**:
+  - Interactive dashboard with charts and summaries of membership, blogs, and news.
+- **Communication**:
+  - Respond to user inquiries.
+  - Post announcements for alumni sets.
 
-## Learn More
+## Technology Stack
 
-To learn more about Next.js, take a look at the following resources:
+The frontend was built using:
+- **React.js**: A JavaScript library for building dynamic user interfaces.
+- **Next.js 14**: A React framework for server-side rendering and improved performance.
+- **Redux/Redux Toolkit**: For global state management.
+- **Tailwind CSS**: For styling and responsive design.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Development
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Installation
 
-## Deploy on Vercel
+To run the project locally:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
