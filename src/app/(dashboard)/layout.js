@@ -10,7 +10,8 @@ export default function DashboardLayout({ children }) {
       </nav>
       <div className="mt-[6rem] flex">
         <Toggle />
-        <div className="ml-0 lg:ml-[20rem] w-full p-5">{children}</div>
+        {/* lg:ml-[20rem] */}
+        <div className="ml-0 w-full p-5">{children}</div>
       </div>
     </div>
   );

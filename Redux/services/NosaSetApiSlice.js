@@ -4,13 +4,12 @@ const NOSA_SET_URL = "nosa-sets";
 export const setApiSlice = createApi({
   reducerPath: "setSlice",
   tagTypes: ["Set"],
+  baseQuery: baseUrl,
   endpoints: (build) => ({
     getAllSets: build.query({
-      query: () => ({
-        url: `${NOSA_SET_URL}`,
-      }),
+      query: () => NOSA_SET_URL,
       providesTags: ["Set"],
     }),
   }),
 });
-export const { useGetAllSetQuery } = setApiSlice;
+export const { useGetAllSetsQuery } = setApiSlice;

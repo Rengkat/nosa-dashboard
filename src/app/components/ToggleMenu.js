@@ -8,8 +8,9 @@ const ToggleMenu = () => {
   const dispatch = useDispatch();
   return (
     <div
+      // lg:hidden
       onClick={() => dispatch(toggleSideBar())}
-      className="block lg:hidden border-2 border-gray-300 text-primary-500">
+      className="block border-2 border-gray-300 text-primary-500">
       <IoMenu fontSize={40} />
     </div>
   );

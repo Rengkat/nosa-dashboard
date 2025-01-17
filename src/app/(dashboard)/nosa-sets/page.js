@@ -2,9 +2,11 @@
 import { dates } from "@/app/_utils/page";
 import SubHeading from "@/app/components/SubHeading";
 import { useRouter } from "next/navigation";
+import { useGetAllSetsQuery } from "../../../../Redux/services/NosaSetApiSlice";
 
 const Sets = () => {
   const router = useRouter();
+  const { data } = useGetAllSetsQuery();
 
   const onSelect = (set) => {
     router.push(`nosa-sets/${set}`);
@@ -15,7 +17,7 @@ const Sets = () => {
         text={""}
         isButton={false}
         isLink={true}
-        link={"add-nosa-set"}
+        link={"/nosa-sets/add-nosa-set"}
         buttonText={"Add a NOSA Set"}
       />
       <div className="flex items-center my-5">
@@ -25,9 +27,9 @@ const Sets = () => {
           <option disabled selected>
             Select a NOSA Set
           </option>
-          {dates.map((date) => (
-            <option key={date.value} value={date.value}>
-              {date.nosaSet}
+          {data?.sets?.map((date) => (
+            <option key={date._id} value={date.name}>
+              NOSA Set {date.name}
             </option>
           ))}
         </select>

@@ -72,7 +72,9 @@ export default function Home() {
                     <div className="truncate max-w-xs">{user?.email}</div>
                     <div className="truncate max-w-xs">{user?.phone}</div>
                     <div>{user?.nosaSet?.name}</div>
-                    <div className="truncate max-w-xs">{user?.address}</div>
+                    <div className="truncate max-w-xs">
+                      {user?.address ? user?.address : <p>No address yet</p>}
+                    </div>
                   </div>
                 );
               })

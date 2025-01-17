@@ -143,14 +143,14 @@ const currentYear = date.getFullYear();
 if (month + 1 > 8) {
   for (let i = 1978; i <= currentYear; i++) {
     dates.push({
-      nosaSet: `NOSA Set ${i}`,
+      year: `${i}`,
       value: `${i}`,
     });
   }
 } else {
   for (let i = 1978; i < currentYear; i++) {
     dates.push({
-      nosaSet: `NOSA Set ${i}`,
+      year: `${i}`,
       value: `${i}`,
     });
   }

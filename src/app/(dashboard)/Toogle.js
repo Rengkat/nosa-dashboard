@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 const Toggle = () => {
   const { isSideBarOpen } = useSelector((state) => state.app);
-  console.log(isSideBarOpen);
+
   return (
     <div
       className={`${
