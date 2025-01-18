@@ -34,10 +34,10 @@ export const setApiSlice = createApi({
       }),
     }),
     uploadCoverImage: build.mutation({
-      query: ({ image }) => ({
+      query: (data) => ({
         url: `${NOSA_SET_URL}/upload-cover-image`,
         method: "POST",
-        body: image,
+        body: data,
       }),
     }),
   }),

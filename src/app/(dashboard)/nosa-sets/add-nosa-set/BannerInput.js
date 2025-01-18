@@ -9,7 +9,6 @@ export const BannerInput = ({ setBanner }) => {
     const file = event.target.files[0];
     if (file) {
       if (file.size > 5 * 1024 * 1024) {
-        // Example: 5MB limit
         setMessage({ type: "error", text: "File size must not exceed 5MB." });
         return;
       }
@@ -20,7 +19,6 @@ export const BannerInput = ({ setBanner }) => {
         const response = await upload(formData).unwrap();
         setMessage({ type: "success", text: "Image uploaded successfully!" });
         setBanner(response?.imageUrl || "");
-        setBanner(response?.imgUrl);
       } catch (error) {
         setMessage({ type: "error", text: "Failed to upload image. Try again." });
       }
