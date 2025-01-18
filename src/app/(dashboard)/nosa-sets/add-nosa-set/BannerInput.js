@@ -18,7 +18,8 @@ export const BannerInput = ({ setBanner }) => {
       try {
         const response = await upload(formData).unwrap();
         setMessage({ type: "success", text: "Image uploaded successfully!" });
-        setBanner(response?.imageUrl || "");
+
+        setBanner(response?.imgUrl || "");
       } catch (error) {
         setMessage({ type: "error", text: "Failed to upload image. Try again." });
       }

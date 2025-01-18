@@ -20,7 +20,7 @@ export const CoverImageInput = ({ setCoverImage }) => {
       try {
         const response = await upload(formData).unwrap();
         setMessage({ type: "success", text: "Image uploaded successfully!" });
-        setCoverImage(response?.imageUrl || "");
+        setCoverImage(response?.imgUrl || "");
       } catch (error) {
         setMessage({ type: "error", text: "Failed to upload image. Try again." });
       }

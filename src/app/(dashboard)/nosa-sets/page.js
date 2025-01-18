@@ -13,7 +13,7 @@ const Sets = () => {
   const { admin } = useSelector((state) => state.app);
   console.log(admin);
   const onSelect = (set) => {
-    if (set !== admin?.nosaSet) {
+    if (set !== admin?.nosaSet || admin?.role !== "superAdmin") {
       setIsModelOpen(true);
       return;
     }
