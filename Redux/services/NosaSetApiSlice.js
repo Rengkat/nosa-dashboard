@@ -26,6 +26,26 @@ export const setApiSlice = createApi({
       }),
       invalidatesTags: ["Set"],
     }),
+    uploadBannerImage: build.mutation({
+      query: ({ image }) => ({
+        url: `${NOSA_SET_URL}/upload-banner`,
+        method: "POST",
+        body: image,
+      }),
+    }),
+    uploadCoverImage: build.mutation({
+      query: ({ image }) => ({
+        url: `${NOSA_SET_URL}/upload-cover-image`,
+        method: "POST",
+        body: image,
+      }),
+    }),
   }),
 });
-export const { useGetAllSetsQuery, useAddSetMutation, useUpdateSetMutation } = setApiSlice;
+export const {
+  useGetAllSetsQuery,
+  useAddSetMutation,
+  useUpdateSetMutation,
+  useUploadBannerImageMutation,
+  useUploadCoverImageMutation,
+} = setApiSlice;

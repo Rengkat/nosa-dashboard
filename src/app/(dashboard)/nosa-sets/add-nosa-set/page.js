@@ -3,6 +3,8 @@
 import { dates } from "@/app/_utils/page";
 import { useState } from "react";
 import { useAddSetMutation } from "../../../../../Redux/services/NosaSetApiSlice";
+import { BannerInput } from "./BannerInput";
+import { CoverImageInput } from "./CoverImageInput";
 
 const AddSet = () => {
   const [year, setYear] = useState("");
@@ -10,17 +12,15 @@ const AddSet = () => {
   const [coverImage, setCoverImage] = useState(null);
   const [description, setDescription] = useState("");
   const [addSet] = useAddSetMutation();
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   const formData = new FormData();
-  //   formData.append("year", year);
-  //   formData.append("banner", banner);
-  //   formData.append("coverImage", coverImage);
-  //   formData.append("description", description);
-
-  //   console.log(formData);
-  // };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("year", year);
+    formData.append("banner", banner);
+    formData.append("coverImage", coverImage);
+    formData.append("description", description);
+    console.log(formData);
+  };
 
   return (
     <div className="bg-gray-200 my-[3rem] shadow rounded-md p-5">
@@ -45,26 +45,9 @@ const AddSet = () => {
         </div>
         <div className="flex flex-col lg:flex-row justify-center gap-10">
           {/* Banner Upload */}
-          <div className="w-full">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Banner Image</label>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => setBanner(e.target.files[0])}
-              className="block w-full py-3 px-5 text-sm text-gray-700 border border-gray-300 rounded-md cursor-pointer bg-white focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-            />
-          </div>
-
+          <BannerInput setBanner={setBanner} />
           {/* Cover Image Upload */}
-          <div className="w-full">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Cover Image</label>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => setCoverImage(e.target.files[0])}
-              className="block w-full py-3 px-5  text-sm text-gray-700 border border-gray-300 rounded-md cursor-pointer bg-white focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-            />
-          </div>
+          <CoverImageInput setCoverImage={setCoverImage} />
         </div>
 
         {/* Description */}

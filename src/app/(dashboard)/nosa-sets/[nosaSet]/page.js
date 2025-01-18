@@ -5,6 +5,8 @@ import React, { Fragment } from "react";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 
 const SpecificSet = ({ params }) => {
+  const { nosaSet } = params;
+
   return (
     <div>
       {/* <SubHeading
@@ -16,7 +18,7 @@ const SpecificSet = ({ params }) => {
       /> */}
 
       <div className="bg-gray-200 p-5 shadow rounded mt-10 overflow-x-auto">
-        <div className="font-bold text-xl ">Pending Set {params.nosaSet} Requests</div>
+        <div className="font-bold text-xl ">Pending Set Requests</div>
         <div className="my-5">
           {mockData.slice(0, 3).map((user, i) => {
             return (
@@ -39,7 +41,7 @@ const SpecificSet = ({ params }) => {
         </div>
       </div>
       <div className="bg-gray-200 p-5 shadow rounded my-10 overflow-x-auto">
-        <div className="font-bold text-xl my-8">Approved {params.nosaSet} Set</div>
+        <div className="font-bold text-xl my-8">Approved Set</div>
         <div className="grid-set-tableHead text-base md:text-xl font-semibold capitalize py-5 my-2 border-b-2 border-gray-400">
           {SetTableHeading.map((head, i) => {
             return (
@@ -57,7 +59,7 @@ const SpecificSet = ({ params }) => {
         <div className="text-sm lg:text-base">
           {mockData.map((user, i) => {
             return (
-              <Link href={`/nosa-sets/${params.nosaSet}/${i + 1}`}>
+              <Link href={`/nosa-sets/${nosaSet}/${i + 1}`}>
                 <div
                   className="grid-set-table border-b-[1px] py-2 border-gray-300 even:bg-gray-300  hover:opacity-[60%] cursor-pointer"
                   key={user.phone}>
