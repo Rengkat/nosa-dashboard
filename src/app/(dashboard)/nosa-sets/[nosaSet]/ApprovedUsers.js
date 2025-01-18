@@ -3,11 +3,13 @@ import { SetTableHeading } from "@/app/_utils/page";
 import Link from "next/link";
 import React, { Fragment } from "react";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
-import { useGetVerifiedUsersQuery } from "../../../../../Redux/services/UsersApiSlice";
 import Loading from "@/app/(auth)/loading";
+import { useGetUnverifiedUsersQuery } from "../../../../../Redux/services/UsersApiSlice";
+import { useRouter } from "next/navigation";
 
 const ApprovedUsers = ({ mockData, nosaSet }) => {
-  const { data, isLoading } = useGetVerifiedUsersQuery();
+  const { data, isLoading } = useGetUnverifiedUsersQuery(nosaSet);
+  console.log(data);
   if (isLoading) <Loading />;
   return (
     <div className="bg-gray-200 p-5 shadow rounded my-10 overflow-x-auto">
@@ -27,31 +29,35 @@ const ApprovedUsers = ({ mockData, nosaSet }) => {
         })}
       </div>
       <div className="text-sm lg:text-base">
-        {mockData.map((user, i) => {
-          return (
-            <Link href={`/nosa-sets/${nosaSet}/${i + 1}`}>
-              <div
-                className="grid-set-table border-b-[1px] py-2 border-gray-300 even:bg-gray-300  hover:opacity-[60%] cursor-pointer"
-                key={user.phone}>
-                <div className="pl-4">{i + 1}.</div>
-                <div className="truncate max-w-xs">{user?.name}</div>
-                <div className="truncate max-w-xs">{user?.email}</div>
-                <div className="truncate max-w-xs">{user?.phone}</div>
-                <div className="truncate max-w-xs">{user?.address}</div>
-                <div className="flex justify-center items-center capitalize">
-                  <div
-                    className={`${
-                      user.status === "active"
-                        ? "bg-green-400 text-green-900"
-                        : "bg-red-300  text-red-900"
-                    } py-[2px] md:py-2 px-[4px] md:px-3 rounded-lg`}>
-                    {user?.status}
+        {data?.users?.length < 1 ? (
+          <div>No users in this set yet</div>
+        ) : (
+          data?.data?.map((user, i) => {
+            return (
+              <Link key={user?._id} href={`/nosa-sets/${nosaSet}/${user?._id}`}>
+                <div
+                  className="grid-set-table border-b-[1px] py-2 border-gray-300 even:bg-gray-300  hover:opacity-[60%] cursor-pointer"
+                  key={user.phone}>
+                  <div className="pl-4">{i + 1}.</div>
+                  <div className="truncate max-w-xs">{user?.fullName}</div>
+                  <div className="truncate max-w-xs">{user?.email}</div>
+                  <div className="truncate max-w-xs">{user?.phone || "Null"}</div>
+                  <div className="truncate max-w-xs">{user?.address || "No address yet"}</div>
+                  <div className="flex justify-center items-center capitalize">
+                    <div
+                      className={`${
+                        user.status === "active"
+                          ? "bg-green-400 text-green-900"
+                          : "bg-red-300  text-red-900"
+                      } py-[2px] md:py-2 px-[4px] md:px-3 rounded-lg`}>
+                      {user?.status}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          );
-        })}
+              </Link>
+            );
+          })
+        )}
       </div>
       <div className="w-full flex justify-end my-10 items-center">
         <button className="py-2 px-4 rounded shadow">

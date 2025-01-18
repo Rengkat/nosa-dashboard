@@ -32,6 +32,7 @@ export const setApiSlice = createApi({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["Set"],
     }),
     uploadCoverImage: build.mutation({
       query: (data) => ({
@@ -39,6 +40,19 @@ export const setApiSlice = createApi({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["Set"],
+    }),
+    getVerifiedSetMembers: build.query({
+      query: (id) => ({
+        url: `${NOSA_SET_URL}/${id}/verified-members`,
+      }),
+      invalidatesTags: ["Users"],
+    }),
+    getUnverifiedSetMembers: build.query({
+      query: (id) => ({
+        url: `${NOSA_SET_URL}/${id}/unverified-members`,
+      }),
+      invalidatesTags: ["Users"],
     }),
   }),
 });
@@ -48,4 +62,6 @@ export const {
   useUpdateSetMutation,
   useUploadBannerImageMutation,
   useUploadCoverImageMutation,
+  useGetUnverifiedSetMembersQuery,
+  useGetVerifiedSetMembersQuery,
 } = setApiSlice;
