@@ -27,10 +27,10 @@ export const setApiSlice = createApi({
       invalidatesTags: ["Set"],
     }),
     uploadBannerImage: build.mutation({
-      query: ({ image }) => ({
+      query: (data) => ({
         url: `${NOSA_SET_URL}/upload-banner`,
         method: "POST",
-        body: image,
+        body: data,
       }),
     }),
     uploadCoverImage: build.mutation({

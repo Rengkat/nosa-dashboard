@@ -1,6 +1,8 @@
 import React from "react";
+import { useUploadCoverImageMutation } from "../../../../../Redux/services/NosaSetApiSlice";
 
 export const CoverImageInput = ({ setCoverImage }) => {
+  const [upload] = useUploadCoverImageMutation();
   const uploadImage = async () => {};
   return (
     <div className="w-full">
