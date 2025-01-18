@@ -10,6 +10,22 @@ export const setApiSlice = createApi({
       query: () => NOSA_SET_URL,
       providesTags: ["Set"],
     }),
+    addSet: build.mutation({
+      query: (data) => ({
+        url: NOSA_SET_URL,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Set"],
+    }),
+    updateSet: build.mutation({
+      query: (setId, data) => ({
+        url: `${NOSA_SET_URL}/${setId}`,
+        method: "PATCH",
+        body: data,
+      }),
+      invalidatesTags: ["Set"],
+    }),
   }),
 });
-export const { useGetAllSetsQuery } = setApiSlice;
+export const { useGetAllSetsQuery, useAddSetMutation, useUpdateSetMutation } = setApiSlice;

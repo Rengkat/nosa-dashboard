@@ -2,46 +2,25 @@
 
 import { dates } from "@/app/_utils/page";
 import { useState } from "react";
+import { useAddSetMutation } from "../../../../../Redux/services/NosaSetApiSlice";
 
 const AddSet = () => {
   const [year, setYear] = useState("");
   const [banner, setBanner] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
   const [description, setDescription] = useState("");
+  const [addSet] = useAddSetMutation();
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  //   const formData = new FormData();
+  //   formData.append("year", year);
+  //   formData.append("banner", banner);
+  //   formData.append("coverImage", coverImage);
+  //   formData.append("description", description);
 
-    if (!year) {
-      alert("Please select a graduation year.");
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append("year", year);
-    formData.append("banner", banner);
-    formData.append("coverImage", coverImage);
-    formData.append("description", description);
-
-    // Assuming you have an API endpoint to handle the submission
-    fetch("/api/nosa-set", {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        alert("NOSA Set added successfully!");
-        // Reset the form
-        setYear("");
-        setBanner(null);
-        setCoverImage(null);
-        setDescription("");
-      })
-      .catch((err) => {
-        console.error(err);
-        alert("Error adding NOSA Set.");
-      });
-  };
+  //   console.log(formData);
+  // };
 
   return (
     <div className="bg-gray-200 my-[3rem] shadow rounded-md p-5">
