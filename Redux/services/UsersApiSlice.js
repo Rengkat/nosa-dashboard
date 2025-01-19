@@ -41,9 +41,10 @@ export const usersApiSlice = createApi({
       invalidatesTags: ["Users"],
     }),
     updateUserByAdmin: build.mutation({
-      query: (id) => ({
+      query: ({ id, details }) => ({
         url: `${USERS_URL}/${id}`,
         method: "PATCH",
+        body: details,
       }),
       invalidatesTags: ["Users"],
     }),
