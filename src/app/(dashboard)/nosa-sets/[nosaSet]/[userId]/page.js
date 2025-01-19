@@ -5,25 +5,30 @@ import { Form } from "@/app/components/AddAdmin";
 import SubHeading from "@/app/components/SubHeading";
 import React, { useEffect, useState } from "react";
 import {
+  useDeleteUserMutation,
   useGetSingleUserQuery,
   useUpdateUserByAdminMutation,
 } from "../../../../../../Redux/services/UsersApiSlice";
 import Loading from "@/app/(auth)/loading";
 import { useGetAllSetsQuery } from "../../../../../../Redux/services/NosaSetApiSlice";
+import { useRouter } from "next/navigation";
 
 const UserDetail = ({ params }) => {
   const { userId, nosaSet } = params;
-  const { data, isLoading, isError } = useGetSingleUserQuery(userId);
+  const { data, isLoading, isError, refetch } = useGetSingleUserQuery(userId);
   const { data: sets } = useGetAllSetsQuery();
   const [update, { isLoading: updating }] = useUpdateUserByAdminMutation();
-
+  const [deleteUser, { isLoading: deleting }] = useDeleteUserMutation();
   const [firstName, setFirstName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [selectedSet, setSelectedSet] = useState("");
-  // console.log(sets);
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const router = useRouter();
   // Update state when data changes
   useEffect(() => {
     if (data) {
@@ -49,33 +54,57 @@ const UserDetail = ({ params }) => {
 
   const handleUpdateMember = async () => {
     try {
-      const res = await update({
-        id: userId, // Pass the correct user ID
+      await update({
+        id: userId,
         details: { firstName, surname, email, phone, address, setId: selectedSet },
       }).unwrap();
-
-      console.log("Update successful:", res);
+      refetch();
+      setMessage("User updated successfully.");
+      setError("");
+      setTimeout(() => {
+        router.push(`/nosa-sets/${nosaSet}`);
+      }, 3000);
     } catch (error) {
-      console.error("Update Member Error:", error);
+      setError("Failed to update user. Please try again.");
+      setMessage("");
     }
   };
 
   const handleBlockMember = async () => {
     try {
+      const newStatus = data?.user?.status === "active" ? "blocked" : "active";
       const res = await update({
         id: userId,
-        details: { status: "blocked" },
+        details: { status: newStatus },
       }).unwrap();
-
-      console.log("Update successful:", res);
+      refetch();
+      setMessage(
+        `User has been ${newStatus === "blocked" ? "blocked" : "unblocked"} successfully.`
+      );
+      setError("");
+      setTimeout(() => {
+        router.push(`/nosa-sets/${nosaSet}`);
+      }, 3000);
     } catch (error) {
-      console.error("Update Member Error:", error);
+      setError("Failed to update user status. Please try again.");
+      setMessage("");
     }
   };
 
-  const handleDeleteMember = () => {
-    // Add logic to delete member
-    console.log("Delete Member:", userId);
+  const handleDeleteMember = async () => {
+    try {
+      await deleteUser(userId).unwrap();
+      refetch();
+      setMessage(`User ${data?.user?.fullName} has been deleted successfully.`);
+      setError("");
+      setShowDeleteConfirm(false);
+      setTimeout(() => {
+        router.push(`/nosa-sets/${nosaSet}`);
+      }, 3000);
+    } catch (error) {
+      setError("Failed to delete user. Please try again.");
+      setMessage("");
+    }
   };
 
   return (
@@ -87,6 +116,9 @@ const UserDetail = ({ params }) => {
         link={`/nosa-sets/${nosaSet}`}
         buttonText="Back to Set Manage Set"
       />
+
+      {message && <div className="bg-green-100 text-green-800 p-3 rounded mb-5">{message}</div>}
+      {error && <div className="bg-red-100 text-red-800 p-3 rounded mb-5">{error}</div>}
 
       <div className="flex items-center gap-5 w-full mb-5">
         <input
@@ -150,26 +182,39 @@ const UserDetail = ({ params }) => {
         <button
           onClick={handleUpdateMember}
           className="bg-primary-500 text-white text-xl py-4 px-10 shadow rounded">
-          {updating ? "Updating member" : " Update Member"}
+          Update Member
         </button>
         <button
           onClick={handleBlockMember}
           className="bg-gray-500 text-white text-xl py-4 px-10 shadow rounded">
-          {data?.user?.status === "active" ? " Block Member" : "Unblock Member"}
+          {data?.user?.status === "active" ? "Block Member" : "Unblock Member"}
         </button>
         <button
-          onClick={handleDeleteMember}
+          onClick={() => setShowDeleteConfirm(true)}
           className="bg-red-700 text-white text-xl py-4 px-10 shadow rounded">
           Delete Member
         </button>
       </div>
-      <div className="fixed bg-black inset-0">
-        <div>are you sure you want to delete {data?.user?.fullName} from this set?</div>
-        <div>
-          <button>Yes</button>
-          <button>Cancel</button>
+
+      {showDeleteConfirm && (
+        <div className="fixed bg-black inset-0 bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-10 rounded shadow-lg text-center">
+            <p>Are you sure you want to delete {data?.user?.fullName} from this set?</p>
+            <div className="flex justify-center mt-5 gap-5">
+              <button
+                onClick={handleDeleteMember}
+                className="bg-red-700 text-white py-3 px-8 rounded">
+                Yes
+              </button>
+              <button
+                onClick={() => setShowDeleteConfirm(false)}
+                className="bg-gray-500 text-white py-3 px-8 rounded">
+                Cancel
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
