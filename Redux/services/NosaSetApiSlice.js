@@ -46,13 +46,13 @@ export const setApiSlice = createApi({
       query: (id) => ({
         url: `${NOSA_SET_URL}/${id}/verified-members`,
       }),
-      invalidatesTags: ["Users"],
+      invalidatesTags: ["Set"],
     }),
     getUnverifiedSetMembers: build.query({
       query: (id) => ({
         url: `${NOSA_SET_URL}/${id}/unverified-members`,
       }),
-      invalidatesTags: ["Users"],
+      invalidatesTags: ["Set"],
     }),
   }),
 });

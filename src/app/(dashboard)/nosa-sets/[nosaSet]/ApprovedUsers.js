@@ -4,12 +4,11 @@ import Link from "next/link";
 import React, { Fragment } from "react";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import Loading from "@/app/(auth)/loading";
-import { useGetUnverifiedUsersQuery } from "../../../../../Redux/services/UsersApiSlice";
 import { useRouter } from "next/navigation";
+import { useGetVerifiedSetMembersQuery } from "../../../../../Redux/services/NosaSetApiSlice";
 
 const ApprovedUsers = ({ mockData, nosaSet }) => {
-  const { data, isLoading } = useGetUnverifiedUsersQuery(nosaSet);
-  console.log(data);
+  const { data, isLoading } = useGetVerifiedSetMembersQuery(nosaSet);
   if (isLoading) <Loading />;
   return (
     <div className="bg-gray-200 p-5 shadow rounded my-10 overflow-x-auto">

@@ -4,7 +4,6 @@ import { useGetUnverifiedSetMembersQuery } from "../../../../../Redux/services/N
 
 const PendingRequest = ({ nosaSet }) => {
   const { data, isLoading } = useGetUnverifiedSetMembersQuery(nosaSet);
-  console.log(data);
   if (isLoading) <Loading />;
   return (
     <div className="bg-gray-200 p-5 shadow rounded mt-10 overflow-x-auto">
