@@ -189,7 +189,7 @@ const Events = ({ params }) => {
           </button>
         </form>
       </div>
-      <EventsList />
+      <EventsList nosaSet={nosaSet} />
     </div>
   );
 };

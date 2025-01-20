@@ -1,75 +1,49 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FaPlus, FaTrash } from "react-icons/fa";
+import {
+  useUploadMediaMutation,
+  useDeleteMediaMutation,
+  useFetchMediaBySetQuery,
+} from "../redux/api/setMediaSlice";
 
-const sampleImages = [
-  "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400",
-  "https://images.unsplash.com/photo-1521747116042-5a810fda9664?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400",
-];
-
-const MediaDashboard = () => {
-  const [images, setImages] = useState(sampleImages);
+const MediaDashboard = ({ params }) => {
+  const { nosaSet } = params;
   const [uploadImage, setUploadImage] = useState(null);
+  const { data, isLoading, refetch } = useFetchMediaBySetQuery(nosaSet);
+  const [uploadMedia] = useUploadMediaMutation();
+  const [deleteMedia] = useDeleteMediaMutation();
 
-  // Fetch images from the backend
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const response = await fetch("/api/media"); // Replace with your backend API
-        const data = await response.json();
-        setImages(data);
-      } catch (error) {
-        console.error("Error fetching images:", error);
-      }
-    };
-
-    fetchImages();
-  }, []);
-
-  // Handle image upload
   const handleUpload = async (e) => {
     e.preventDefault();
     if (!uploadImage) return;
 
     const formData = new FormData();
-    formData.append("file", uploadImage);
+    formData.append("images", uploadImage);
 
     try {
-      const response = await fetch("/api/media/upload", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (response.ok) {
-        const newImage = await response.json();
-        setImages((prev) => [...prev, newImage.url]);
+      const response = await uploadMedia(formData).unwrap();
+      if (response.success) {
         setUploadImage(null);
-      } else {
-        console.error("Upload failed.");
+        refetch();
       }
     } catch (error) {
       console.error("Error uploading image:", error);
     }
   };
 
-  // Handle image deletion
-  const handleDelete = async (imageUrl) => {
+  const handleDelete = async (id, imageUrl) => {
     try {
-      const response = await fetch(`/api/media/delete`, {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url: imageUrl }),
-      });
-
-      if (response.ok) {
-        setImages((prev) => prev.filter((img) => img !== imageUrl));
-      } else {
-        console.error("Deletion failed.");
+      const response = await deleteMedia({ id, imageUrl }).unwrap();
+      if (response.success) {
+        refetch();
       }
     } catch (error) {
       console.error("Error deleting image:", error);
     }
   };
+
+  if (isLoading) return <p>Loading...</p>;
 
   return (
     <div className="w-full flex flex-col gap-5">
@@ -94,13 +68,13 @@ const MediaDashboard = () => {
 
       {/* Gallery Section */}
       <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 p-5 bg-gray-100 rounded-md shadow-md">
-        {images.map((image, index) => (
+        {data?.setMedia?.map((image) => (
           <div
-            key={index}
+            key={image._id}
             className="relative h-48 bg-cover bg-center rounded-md"
-            style={{ backgroundImage: `url(${image})` }}>
+            style={{ backgroundImage: `url(${image.imageUrl})` }}>
             <button
-              onClick={() => handleDelete(image)}
+              onClick={() => handleDelete(image._id, image.imageUrl)}
               className="absolute top-2 right-2 bg-red-600 text-white rounded-full p-2 hover:bg-red-700">
               <FaTrash />
             </button>

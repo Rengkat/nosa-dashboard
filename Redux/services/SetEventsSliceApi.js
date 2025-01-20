@@ -27,7 +27,17 @@ export const setEventsSlice = createApi({
       }),
       invalidatesTags: ["SetEvent"],
     }),
+    deleteEvent: build.mutation({
+      query: (id) => ({
+        url: `${SET_EVENT_URL}/${id}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
-export const { useAddSetEventMutation, useUploadEventImageMutation, useGetSetEventsQuery } =
-  setEventsSlice;
+export const {
+  useAddSetEventMutation,
+  useUploadEventImageMutation,
+  useGetSetEventsQuery,
+  useDeleteEventMutation,
+} = setEventsSlice;
