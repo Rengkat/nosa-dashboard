@@ -4,6 +4,7 @@ import { authApiSlice } from "./services/AuthSlice";
 import { statsApiSlice } from "./services/StatsApiSlice";
 import { usersApiSlice } from "./services/UsersApiSlice";
 import { setApiSlice } from "./services/NosaSetApiSlice";
+import { setEventsSlice } from "./services/SetEventsSliceApi";
 export const store = configureStore({
   reducer: {
     app: AppSlice,
@@ -11,12 +12,14 @@ export const store = configureStore({
     [statsApiSlice.reducerPath]: statsApiSlice.reducer,
     [usersApiSlice.reducerPath]: usersApiSlice.reducer,
     [setApiSlice.reducerPath]: setApiSlice.reducer,
+    [setEventsSlice.reducerPath]: setEventsSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
       .concat(authApiSlice.middleware)
       .concat(statsApiSlice.middleware)
       .concat(usersApiSlice.middleware)
-      .concat(setApiSlice.middleware),
+      .concat(setApiSlice.middleware)
+      .concat(setEventsSlice.middleware),
   devTools: true,
 });
