@@ -21,6 +21,13 @@ export const setEventsSlice = createApi({
         body: data,
       }),
     }),
+    getSetEvents: build.query({
+      query: (setId) => ({
+        url: `${SET_EVENT_URL}?setId=${setId}`,
+      }),
+      invalidatesTags: ["SetEvent"],
+    }),
   }),
 });
-export const { useAddSetEventMutation, useUploadEventImageMutation } = setEventsSlice;
+export const { useAddSetEventMutation, useUploadEventImageMutation, useGetSetEventsQuery } =
+  setEventsSlice;
