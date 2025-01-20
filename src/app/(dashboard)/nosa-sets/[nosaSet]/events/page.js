@@ -1,16 +1,23 @@
 "use client";
 import React, { useState } from "react";
 import EventsList from "./EventList";
+import {
+  useAddSetEventMutation,
+  useUploadEventImageMutation,
+} from "../../../../../../Redux/services/SetEventsSliceApi";
 
 const Events = () => {
+  const [addEvent] = useAddSetEventMutation();
+  const [uploadImage, { isLoading }] = useUploadEventImageMutation();
   const [eventDetails, setEventDetails] = useState({
     title: "",
     date: "",
     time: "",
     location: "",
     description: "",
-    image: null, // For storing the uploaded image
+    image: null,
   });
+  const [message, setMessage] = useState({ type: "", text: "" });
 
   const handleChange = (e) => {
     const { name, value } = e.target;

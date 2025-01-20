@@ -1,8 +1,10 @@
 "use client";
 
 const { useState } = require("react");
+const { useAddSetEventMutation } = require("../../../../../../../Redux/services/SetEventsSliceApi");
 
 const EventDetails = ({ event, onBack }) => {
+  const [addEvent, { isLoading }] = useAddSetEventMutation();
   const [updatedEvent, setUpdatedEvent] = useState({ ...event });
 
   // Handle input changes

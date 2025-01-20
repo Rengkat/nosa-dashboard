@@ -14,6 +14,13 @@ export const setEventsSlice = createApi({
       }),
       invalidatesTags: ["SetEvent"],
     }),
+    uploadEventImage: build.mutation({
+      query: (data) => ({
+        url: `${SET_EVENT_URL}/upload-event-image`,
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
-export const { useAddSetEventMutation } = setEventsSlice;
+export const { useAddSetEventMutation, useUploadEventImageMutation } = setEventsSlice;
