@@ -2,15 +2,16 @@
 import React, { useState } from "react";
 import { FaPlus, FaTrash } from "react-icons/fa";
 import {
-  useUploadMediaMutation,
   useDeleteMediaMutation,
-  useFetchMediaBySetQuery,
-} from "../redux/api/setMediaSlice";
+  useFetchAllMediaQuery,
+  useUploadMediaMutation,
+} from "../../../../../../Redux/services/setMediaApiSlice";
+import Loading from "@/app/(auth)/loading";
 
 const MediaDashboard = ({ params }) => {
   const { nosaSet } = params;
   const [uploadImage, setUploadImage] = useState(null);
-  const { data, isLoading, refetch } = useFetchMediaBySetQuery(nosaSet);
+  const { data, isLoading, refetch } = useFetchAllMediaQuery(nosaSet);
   const [uploadMedia] = useUploadMediaMutation();
   const [deleteMedia] = useDeleteMediaMutation();
 
@@ -22,7 +23,7 @@ const MediaDashboard = ({ params }) => {
     formData.append("images", uploadImage);
 
     try {
-      const response = await uploadMedia(formData).unwrap();
+      const response = await uploadMedia({ imageUrl: formData, nosaSet }).unwrap();
       if (response.success) {
         setUploadImage(null);
         refetch();
@@ -43,7 +44,7 @@ const MediaDashboard = ({ params }) => {
     }
   };
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loading />;
 
   return (
     <div className="w-full flex flex-col gap-5">
