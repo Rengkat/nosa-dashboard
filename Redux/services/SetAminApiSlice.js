@@ -1,7 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseUrl } from "./BaseUrl";
 const NOSA_SET_ADMINS = "set-admins";
-export const setApiSlice = createApi({
+export const setAdminApiSlice = createApi({
   reducerPath: "setAdminSlice",
   tagTypes: ["SetAdmin"],
   baseQuery: baseUrl,
@@ -29,4 +29,4 @@ export const setApiSlice = createApi({
   }),
 });
 export const { useMakeSetAdminMutation, useGetAllSetAdminQuery, useRemoveSetAdminMutation } =
-  setApiSlice;
+  setAdminApiSlice;

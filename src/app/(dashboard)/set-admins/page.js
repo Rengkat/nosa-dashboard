@@ -1,26 +1,28 @@
+"use client";
 import { mockData, OfficialTableHeading } from "@/app/_utils/page";
 import AddAdmin from "@/app/components/AddAdmin";
 import SubHeading from "@/app/components/SubHeading";
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { MdDelete, MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 
 const SetAdmin = () => {
+  const [isFormShow, setFormShow] = useState(false);
   // const [isAddAdminForm, setIsAddAdmin] = useState(false);
   // const handleClick = () => {
   //   setIsAddAdmin((prev) => !prev);
   // };
   return (
     <div>
-      <SubHeading
-        text={"Set Admins"}
-        buttonText={"Add a Set Admin"}
-        isButton={true}
-        isLink={false}
-        link={""}
-      />
-      <div>
-        <AddAdmin />
+      <div onClick={(e) => setFormShow((prev) => !prev)}>
+        <SubHeading
+          text={"Set Admins"}
+          buttonText={"Add a Set Admin"}
+          isButton={true}
+          isLink={false}
+          link={""}
+        />
       </div>
+      <div>{isFormShow && <AddAdmin setFormShow={setFormShow} />}</div>
       <div className="bg-gray-200 rounded-md shadow my-10 p-5 overflow-x-auto">
         <div className="grid-official-tableHead lg:text-xl font-semibold capitalize py-5 my-2 border-b-2 border-gray-400">
           {OfficialTableHeading.map((head, i) => {
