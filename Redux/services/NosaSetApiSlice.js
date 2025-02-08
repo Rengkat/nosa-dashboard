@@ -54,6 +54,11 @@ export const setApiSlice = createApi({
       }),
       invalidatesTags: ["Set"],
     }),
+    getAllSetAdmins: build.query({
+      query: () => ({
+        url: `${NOSA_SET_URL}/setAdmins`,
+      }),
+    }),
   }),
 });
 export const {
