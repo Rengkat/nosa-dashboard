@@ -20,11 +20,11 @@ export const setAdminApiSlice = createApi({
     }),
 
     removeSetAdmin: build.mutation({
-      query: () => ({
-        url: `${NOSA_SET_ADMINS}`,
+      query: ({ userId }) => ({
+        url: `${NOSA_SET_ADMINS}/${userId}`,
         method: "DELETE",
-        body: data,
       }),
+      invalidatesTags: ["SetAdmin"],
     }),
   }),
 });
