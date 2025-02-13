@@ -1,13 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import { FaPlus, FaTrash } from "react-icons/fa";
+import { createHash } from "crypto";
 import {
   useDeleteMediaMutation,
   useFetchAllMediaQuery,
   useUploadMediaMutation,
 } from "../../../../../../Redux/services/setMediaApiSlice";
 import Loading from "@/app/(auth)/loading";
-
+// const password = createHash("md5").update(string).digest('hex');
 const MediaDashboard = ({ params }) => {
   const { nosaSet } = params;
   const [uploadImage, setUploadImage] = useState(null);

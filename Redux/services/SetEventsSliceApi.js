@@ -25,13 +25,14 @@ export const setEventsSlice = createApi({
       query: (setId) => ({
         url: `${SET_EVENT_URL}?setId=${setId}`,
       }),
-      invalidatesTags: ["SetEvent"],
+      providesTags: ["SetEvent"],
     }),
     deleteEvent: build.mutation({
       query: (id) => ({
         url: `${SET_EVENT_URL}/${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["SetEvent"],
     }),
   }),
 });

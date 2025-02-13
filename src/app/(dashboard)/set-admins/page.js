@@ -16,7 +16,6 @@ const SetAdmin = () => {
   const [removeSetAdmin] = useRemoveSetAdminMutation();
 
   const onRemoved = async (userId) => {
-    console.log(userId);
     try {
       await removeSetAdmin({ userId }).unwrap();
     } catch (error) {

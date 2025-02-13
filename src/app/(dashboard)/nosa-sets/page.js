@@ -11,7 +11,7 @@ const Sets = () => {
   const router = useRouter();
   const { data } = useGetAllSetsQuery();
   const { admin } = useSelector((state) => state.app);
-  console.log(admin);
+  // console.log(admin);
   const onSelect = (set) => {
     if (set !== admin?.nosaSet || admin?.role !== "superAdmin") {
       setIsModelOpen(true);
