@@ -5,6 +5,7 @@ import {
   usePostBlogAndNewsMutation,
   useUploadNewsOrBlogImageMutation,
 } from "../../../../../Redux/services/BlogsSliceApi";
+
 const ContentEditor = dynamic(() => import("./Content"), { ssr: false });
 
 const AddBlog = () => {
@@ -15,7 +16,16 @@ const AddBlog = () => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [title, setTitle] = useState("");
   const [file, setFile] = useState(null);
-  const [image, setImage] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [notification, setNotification] = useState({ message: "", type: "" });
+
+  const showNotification = (message, type = "success") => {
+    setNotification({ message, type });
+
+    setTimeout(() => {
+      setNotification({ message: "", type: "" });
+    }, 3000);
+  };
 
   const handleContentChange = (newContent) => {
     setContent(newContent);
@@ -28,27 +38,63 @@ const AddBlog = () => {
   };
 
   const handleFileChange = async (e) => {
-    setFile(e.target.files[0]);
+    const file = e.target.files[0];
+    if (file) {
+      const formData = new FormData();
+      formData.append("image", file);
+
+      try {
+        const response = await uploadImage(formData).unwrap();
+        setImageUrl(response.imgUrl);
+        showNotification("Image uploaded successfully!", "success");
+      } catch (error) {
+        showNotification("Failed to upload image", "error");
+      }
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!title || !content || selectedCategories.length === 0 || !imageUrl) {
+      showNotification("Please fill in all fields and upload an image.", "error");
+      return;
+    }
+
     const formData = {
       title,
       content,
-      categories: selectedCategories,
-      file,
+      category: selectedCategories.join(", "),
+      image: imageUrl,
     };
-    console.log(formData);
-    // Submit data to an API or handle it as needed
+
+    try {
+      await handlePostBlogAndNews(formData).unwrap();
+      showNotification("Blog/News published successfully!", "success");
+      setTitle("");
+      setContent("");
+      setSelectedCategories([]);
+      setFile(null);
+      setImageUrl("");
+    } catch (error) {
+      showNotification("Failed to publish blog/news", "error");
+    }
   };
 
   return (
     <div className="w-full gap-5 flex flex-col lg:flex-row my-5">
+      {notification.message && (
+        <div
+          className={`p-3 rounded text-white text-center ${
+            notification.type === "success" ? "bg-green-500" : "bg-red-500"
+          }`}>
+          {notification.message}
+        </div>
+      )}
+
       <div className="w-full md:w-[75%]">
         <form onSubmit={handleSubmit} className="bg-gray-200 rounded-md shadow p-5 h-auto">
           <div className="flex flex-col md:flex-row gap-5">
-            {/* Image Upload */}
             <div className="flex w-full md:w-[30%]">
               <input id="file-upload" type="file" className="sr-only" onChange={handleFileChange} />
               <label
@@ -66,7 +112,6 @@ const AddBlog = () => {
               </label>
             </div>
 
-            {/* Right side of image */}
             <div className="flex flex-col w-[100%] gap-3">
               <input
                 type="text"
@@ -76,7 +121,6 @@ const AddBlog = () => {
                 onChange={(e) => setTitle(e.target.value)}
               />
 
-              {/* Quill Content Editor */}
               <ContentEditor onChange={handleContentChange} />
               <button type="submit" className="bg-primary-500 py-3 px-5 text-white">
                 Publish
