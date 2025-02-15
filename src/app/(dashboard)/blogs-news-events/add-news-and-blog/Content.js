@@ -1,47 +1,30 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import Quill from "quill";
-import "quill/dist/quill.snow.css";
+import React from "react";
+import { Editor } from "@tinymce/tinymce-react";
 
 const ContentEditor = ({ onChange }) => {
-  const editorRef = useRef(null);
-  const [quillInstance, setQuillInstance] = useState(null);
-
-  useEffect(() => {
-    if (editorRef.current && !quillInstance) {
-      // Ensure Quill is only initialized once
-      const quill = new Quill(editorRef.current, {
-        theme: "snow",
-        modules: {
-          toolbar: [
-            [{ header: [1, 2, 3, false] }],
-            ["bold", "italic", "underline", "strike"],
-            [{ list: "ordered" }, { list: "bullet" }],
-            ["link", "image"],
-            ["clean"],
-          ],
-        },
+  const config = {
+    height: 300,
+    menubar: false,
+    plugins: [
+      "advlist autolink lists link image charmap print preview anchor",
+      "searchreplace visualblocks code fullscreen",
+      "insertdatetime media table paste code help wordcount",
+    ],
+    toolbar:
+      "undo redo | formatselect | bold italic underline strikethrough | \
+      alignleft aligncenter alignright alignjustify | \
+      bullist numlist outdent indent | link image | removeformat | help",
+    placeholder: "Start typing...",
+    setup: (editor) => {
+      editor.on("change", () => {
+        const content = editor.getContent();
+        onChange(content); // Pass the updated content to the parent component
       });
+    },
+  };
 
-      quill.on("text-change", () => {
-        const content = quill.root.innerHTML;
-        if (onChange) {
-          onChange(content);
-        }
-      });
-
-      setQuillInstance(quill);
-    }
-
-    return () => {
-      if (quillInstance) {
-        // Clean up the editor instance when the component unmounts
-        quillInstance.off("text-change");
-      }
-    };
-  }, [quillInstance, onChange]);
-
-  return <div ref={editorRef} style={{ height: "300px", background: "white" }}></div>;
+  return <Editor apiKey="gmkr4cdx7s765hvm63qgsczn3hqtuuxnuksjk9qfqmajoqpq" init={config} />;
 };
 
 export default ContentEditor;

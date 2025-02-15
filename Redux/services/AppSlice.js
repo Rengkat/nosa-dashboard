@@ -2,7 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import CryptoJS from "crypto-js";
 
-const secretKey = "";
+const secretKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
 const encryptData = (data) => {
   return CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();
 };
