@@ -7,6 +7,7 @@ import { setApiSlice } from "./services/NosaSetApiSlice";
 import { setEventsSlice } from "./services/SetEventsSliceApi";
 import { setMediaSlice } from "./services/setMediaApiSlice";
 import { setAdminApiSlice } from "./services/SetAminApiSlice";
+import { blogApiSlice } from "./services/BlogsSliceApi";
 export const store = configureStore({
   reducer: {
     app: AppSlice,
@@ -17,6 +18,7 @@ export const store = configureStore({
     [setEventsSlice.reducerPath]: setEventsSlice.reducer,
     [setMediaSlice.reducerPath]: setMediaSlice.reducer,
     [setAdminApiSlice.reducerPath]: setAdminApiSlice.reducer,
+    [blogApiSlice.reducerPath]: blogApiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
@@ -26,6 +28,7 @@ export const store = configureStore({
       .concat(setApiSlice.middleware)
       .concat(setEventsSlice.middleware)
       .concat(setAdminApiSlice.middleware)
-      .concat(setMediaSlice.middleware),
+      .concat(setMediaSlice.middleware)
+      .concat(blogApiSlice.middleware),
   devTools: true,
 });

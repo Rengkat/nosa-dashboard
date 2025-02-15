@@ -1,9 +1,15 @@
 "use client";
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
+import {
+  usePostBlogAndNewsMutation,
+  useUploadNewsOrBlogImageMutation,
+} from "../../../../../Redux/services/BlogsSliceApi";
 const ContentEditor = dynamic(() => import("./Content"), { ssr: false });
 
 const AddBlog = () => {
+  const [handlePostBlogAndNews] = usePostBlogAndNewsMutation();
+  const [uploadImage] = useUploadNewsOrBlogImageMutation();
   const categories = ["news", "blog", "event"];
   const [content, setContent] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
