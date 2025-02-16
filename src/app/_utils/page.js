@@ -1,4 +1,4 @@
-import { MdDashboardCustomize, MdGroups } from "react-icons/md";
+import { MdDashboardCustomize, MdEvent, MdGroups } from "react-icons/md";
 import { RiAdminFill, RiSlideshow4Fill } from "react-icons/ri";
 import { LuGalleryHorizontalEnd } from "react-icons/lu";
 import { GiAchievement } from "react-icons/gi";
@@ -30,8 +30,13 @@ export const links = [
 
   {
     name: "Blogs/ News",
-    link: "/blogs-news-events",
+    link: "/blogs-and-news",
     icon: <FaNewspaper />,
+  },
+  {
+    name: "Events",
+    link: "/events",
+    icon: <MdEvent />,
   },
   {
     name: "gallery",

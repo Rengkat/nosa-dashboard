@@ -83,32 +83,38 @@ const News = () => {
 
         {/* News List */}
         <div>
-          {data?.data.map((post, i) => (
-            <div
-              className="grid-news gap-x-5 border-b-[1px] py-3 border-gray-300 cursor-pointer"
-              key={post._id}>
-              <div className="mt-2 pl-5">{i + 1}</div>
-              <div>
-                <Image
-                  src={imageErrors[post._id] ? "/Nosa.png" : post.image || "/Nosa.png"}
-                  alt="post image"
-                  className="rounded-md h-[100px] w-[100px] object-cover"
-                  onError={() => handleImageError(post._id)}
-                />
+          {data?.data?.length < 1 ? (
+            <div className="py-4 font-semibold ">There is no post or news for now</div>
+          ) : (
+            data?.data.map((post, i) => (
+              <div
+                className="grid-news gap-x-5 border-b-[1px] py-3 border-gray-300 cursor-pointer"
+                key={post._id}>
+                <div className="mt-2 pl-5">{i + 1}</div>
+                <div>
+                  <Image
+                    src={imageErrors[post._id] ? "/Nosa.png" : post.image || "/Nosa.png"}
+                    alt="post image"
+                    width={500}
+                    height={500}
+                    className="rounded-md h-[100px] w-[100px] object-cover"
+                    onError={() => handleImageError(post._id)}
+                  />
+                </div>
+                <div className="mx-2 truncate max-w-xs md:max-w-md lg:max-w-none lg:whitespace-normal">
+                  {post.title}
+                </div>
+                <div>{new Date(post.createdAt).toLocaleDateString()}</div>
+                <div className="flex justify-center">
+                  <MdDelete
+                    fontSize={30}
+                    className="mr-10 text-primary-500"
+                    onClick={() => handleDelete(post._id)}
+                  />
+                </div>
               </div>
-              <div className="mx-2 truncate max-w-xs md:max-w-md lg:max-w-none lg:whitespace-normal">
-                {post.title}
-              </div>
-              <div>{new Date(post.createdAt).toLocaleDateString()}</div>
-              <div className="flex justify-center">
-                <MdDelete
-                  fontSize={30}
-                  className="mr-10 text-primary-500"
-                  onClick={() => handleDelete(post._id)}
-                />
-              </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
 
         {/* Category Selection */}
