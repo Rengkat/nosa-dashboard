@@ -9,9 +9,10 @@ export const blogApiSlice = createApi({
   endpoints: (build) => ({
     //get all Bogs and News
     getNewsAndBlogs: build.query({
-      query: () => ({
-        url: `${NEWS_BLOG_URL}`,
+      query: ({ category, page = 1, limit = 10 }) => ({
+        url: NEWS_BLOG_URL,
         method: "GET",
+        params: { category, page, limit },
       }),
       providesTags: ["Blog"],
     }),
@@ -35,6 +36,13 @@ export const blogApiSlice = createApi({
         body: data,
       }),
     }),
+    deletePost: build.mutation({
+      query: (id) => ({
+        url: `/${NEWS_BLOG_URL}/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Blog"],
+    }),
   }),
 });
 
@@ -43,4 +51,5 @@ export const {
   useGetDetailPostQuery,
   usePostBlogAndNewsMutation,
   useUploadNewsOrBlogImageMutation,
+  useDeletePostMutation,
 } = blogApiSlice;

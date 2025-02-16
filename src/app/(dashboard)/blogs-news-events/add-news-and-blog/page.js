@@ -15,13 +15,11 @@ const AddBlog = () => {
   const [content, setContent] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [title, setTitle] = useState("");
-  const [file, setFile] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
   const [notification, setNotification] = useState({ message: "", type: "" });
 
   const showNotification = (message, type = "success") => {
     setNotification({ message, type });
-
     setTimeout(() => {
       setNotification({ message: "", type: "" });
     }, 3000);
@@ -74,7 +72,6 @@ const AddBlog = () => {
       setTitle("");
       setContent("");
       setSelectedCategories([]);
-      setFile(null);
       setImageUrl("");
     } catch (error) {
       showNotification("Failed to publish blog/news", "error");
@@ -95,7 +92,7 @@ const AddBlog = () => {
       <div className="w-full md:w-[75%]">
         <form onSubmit={handleSubmit} className="bg-gray-200 rounded-md shadow p-5 h-auto">
           <div className="flex flex-col md:flex-row gap-5">
-            <div className="flex w-full md:w-[30%]">
+            <div className="flex flex-col w-full md:w-[30%] items-center">
               <input id="file-upload" type="file" className="sr-only" onChange={handleFileChange} />
               <label
                 htmlFor="file-upload"
@@ -110,6 +107,13 @@ const AddBlog = () => {
                 </svg>
                 <span>Upload Image</span>
               </label>
+              {imageUrl && (
+                <img
+                  src={imageUrl}
+                  alt="Uploaded preview"
+                  className="mt-3 w-full h-auto rounded-md"
+                />
+              )}
             </div>
 
             <div className="flex flex-col w-[100%] gap-3">
