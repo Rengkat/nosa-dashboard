@@ -55,7 +55,7 @@ const News = () => {
     setImageErrors((prev) => ({ ...prev, [id]: true }));
   };
 
-  if (isLoading) return <Loading />;
+  // if (isLoading) return <Loading />;
 
   return (
     <div>
@@ -64,7 +64,7 @@ const News = () => {
         buttonText="Add a Blog or News"
         isButton={false}
         isLink={true}
-        link="/blogs-news-events/add-news-and-blog"
+        link="/blogs-and-news/add-news-and-blog"
       />
       {successMessage && <div className="text-green-500">{successMessage}</div>}
       {errorMessage && <div className="text-red-500">{errorMessage}</div>}

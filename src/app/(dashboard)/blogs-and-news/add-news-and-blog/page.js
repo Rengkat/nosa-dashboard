@@ -42,7 +42,8 @@ const AddBlog = () => {
       formData.append("image", file);
 
       try {
-        const response = await uploadImage(formData).unwrap();
+        const response = await uploadImage(formData);
+        console.log(response);
         setImageUrl(response.imgUrl);
         showNotification("Image uploaded successfully!", "success");
       } catch (error) {

@@ -20,7 +20,7 @@ export const store = configureStore({
     [setMediaSlice.reducerPath]: setMediaSlice.reducer,
     [setAdminApiSlice.reducerPath]: setAdminApiSlice.reducer,
     [blogApiSlice.reducerPath]: blogApiSlice.reducer,
-    [eventApiSlice.reducerPath]: blogApiSlice.reducer,
+    [eventApiSlice.reducerPath]: eventApiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()

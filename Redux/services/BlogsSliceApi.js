@@ -35,6 +35,7 @@ export const blogApiSlice = createApi({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["Blog"],
     }),
     deletePost: build.mutation({
       query: (id) => ({
