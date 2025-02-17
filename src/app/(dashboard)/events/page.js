@@ -40,7 +40,7 @@ const Events = () => {
   };
 
   if (isLoading) return <Loading />;
-  // console.log(data?.data);
+  console.log(data?.data);
   return (
     <div>
       <SubHeading
@@ -65,23 +65,23 @@ const Events = () => {
           ))}
         </div>
 
-        {/* Events List */}
         <div>
           {data?.data?.length < 1 ? (
-            <div className="py-4 font-semibold ">There is no events for now</div>
+            <div className="py-4 font-semibold ">There is no event for now</div>
           ) : (
             data?.data.map((event, i) => (
               <div
-                className="grid-events gap-x-5 border-b-[1px] py-3 border-gray-300 cursor-pointer"
+                className="grid-news gap-x-5 border-b-[1px] py-3 border-gray-300 cursor-pointer"
                 key={event._id}>
                 <div className="mt-2 pl-5">{i + 1}</div>
                 <div>
                   <Image
-                    src={event?.image || "/Nosa.png"}
-                    alt="event image"
+                    src={imageErrors[event._id] ? "/Nosa.png" : event.image || "/Nosa.png"}
+                    alt="post image"
                     width={500}
                     height={500}
                     className="rounded-md h-[100px] w-[100px] object-cover"
+                    onError={() => handleImageError(event._id)}
                   />
                 </div>
                 <div className="mx-2 truncate max-w-xs md:max-w-md lg:max-w-none lg:whitespace-normal">

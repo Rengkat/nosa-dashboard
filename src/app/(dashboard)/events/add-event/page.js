@@ -13,6 +13,16 @@ const AddEvent = () => {
   const [uploadImage] = useUploadEventImageMutation();
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [dateOfEvent, setDateOfEvent] = useState("");
+  const [venue, setVenue] = useState({
+    name: "",
+    address: "",
+    city: "",
+    state: "",
+    country: "",
+    zipCode: "",
+  });
   const [imageUrl, setImageUrl] = useState("");
   const [notification, setNotification] = useState({ message: "", type: "" });
 
@@ -34,7 +44,7 @@ const AddEvent = () => {
       formData.append("image", file);
 
       try {
-        const response = await uploadImage(formData);
+        const response = await uploadImage(formData).unwrap();
         console.log(response);
         setImageUrl(response.imgUrl);
         showNotification("Image uploaded successfully!", "success");
@@ -44,16 +54,38 @@ const AddEvent = () => {
     }
   };
 
+  const handleVenueChange = (e) => {
+    const { name, value } = e.target;
+    setVenue((prevVenue) => ({
+      ...prevVenue,
+      [name]: value,
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!title || !content || !imageUrl) {
+    if (
+      !title ||
+      !content ||
+      !imageUrl ||
+      !dateOfEvent ||
+      !venue.name ||
+      !venue.address ||
+      !venue.city ||
+      !venue.state ||
+      !venue.country ||
+      !venue.zipCode
+    ) {
       showNotification("Please fill in all fields and upload an image.", "error");
       return;
     }
 
     const formData = {
       title,
+      description,
+      dateOfEvent,
+      venue,
       content,
       image: imageUrl,
     };
@@ -62,6 +94,16 @@ const AddEvent = () => {
       await addEvent(formData).unwrap();
       showNotification("Event published successfully!", "success");
       setTitle("");
+      setDescription("");
+      setDateOfEvent("");
+      setVenue({
+        name: "",
+        address: "",
+        city: "",
+        state: "",
+        country: "",
+        zipCode: "",
+      });
       setContent("");
       setImageUrl("");
     } catch (error) {
@@ -115,6 +157,72 @@ const AddEvent = () => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
+
+              <input
+                type="text"
+                className="w-full py-3 px-5 outline-none"
+                placeholder="Event Description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+
+              <input
+                type="datetime-local"
+                className="w-full py-3 px-5 outline-none"
+                value={dateOfEvent}
+                onChange={(e) => setDateOfEvent(e.target.value)}
+              />
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <input
+                  type="text"
+                  className="w-full py-3 px-5 outline-none"
+                  placeholder="Venue Name"
+                  name="name"
+                  value={venue.name}
+                  onChange={handleVenueChange}
+                />
+                <input
+                  type="text"
+                  className="w-full py-3 px-5 outline-none"
+                  placeholder="Venue Address"
+                  name="address"
+                  value={venue.address}
+                  onChange={handleVenueChange}
+                />
+                <input
+                  type="text"
+                  className="w-full py-3 px-5 outline-none"
+                  placeholder="City"
+                  name="city"
+                  value={venue.city}
+                  onChange={handleVenueChange}
+                />
+                <input
+                  type="text"
+                  className="w-full py-3 px-5 outline-none"
+                  placeholder="State"
+                  name="state"
+                  value={venue.state}
+                  onChange={handleVenueChange}
+                />
+                <input
+                  type="text"
+                  className="w-full py-3 px-5 outline-none"
+                  placeholder="Country"
+                  name="country"
+                  value={venue.country}
+                  onChange={handleVenueChange}
+                />
+                <input
+                  type="text"
+                  className="w-full py-3 px-5 outline-none"
+                  placeholder="Zip Code"
+                  name="zipCode"
+                  value={venue.zipCode}
+                  onChange={handleVenueChange}
+                />
+              </div>
 
               <ContentEditor onChange={handleContentChange} />
               <button type="submit" className="bg-primary-500 py-3 px-5 text-white">

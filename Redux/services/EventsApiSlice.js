@@ -3,7 +3,7 @@ import { baseUrl } from "./BaseUrl";
 const EVENTS_URL = "events";
 
 export const eventApiSlice = createApi({
-  reducerPath: "blogsApi",
+  reducerPath: "eventApi",
   baseQuery: baseUrl,
   tagTypes: ["Event"],
   endpoints: (build) => ({
@@ -35,6 +35,7 @@ export const eventApiSlice = createApi({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["Event"],
     }),
     deleteEvent: build.mutation({
       query: (id) => ({

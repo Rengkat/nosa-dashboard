@@ -34,7 +34,6 @@ const AddBlog = () => {
       prev.includes(category) ? prev.filter((cat) => cat !== category) : [...prev, category]
     );
   };
-
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -42,11 +41,11 @@ const AddBlog = () => {
       formData.append("image", file);
 
       try {
-        const response = await uploadImage(formData);
-        console.log(response);
+        const response = await uploadImage(formData).unwrap();
         setImageUrl(response.imgUrl);
         showNotification("Image uploaded successfully!", "success");
       } catch (error) {
+        console.error("Failed to upload image:", error);
         showNotification("Failed to upload image", "error");
       }
     }
