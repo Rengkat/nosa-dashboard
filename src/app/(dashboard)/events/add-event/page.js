@@ -37,7 +37,7 @@ const AddEvent = () => {
   const handleContentChange = (newContent) => {
     setContent(newContent);
   };
-
+  //upload image
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
