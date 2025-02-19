@@ -46,7 +46,6 @@ const AddEvent = () => {
 
       try {
         const response = await uploadImage(formData).unwrap();
-        console.log(response);
         setImageUrl(response.imgUrl);
         showNotification("Image uploaded successfully!", "success");
       } catch (error) {
