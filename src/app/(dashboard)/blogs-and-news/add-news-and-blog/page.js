@@ -1,21 +1,27 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import {
   usePostBlogAndNewsMutation,
   useUploadNewsOrBlogImageMutation,
+  useFetchUsersQuery,
 } from "../../../../../Redux/services/BlogsSliceApi";
+import { useGetVerifiedUsersQuery } from "../../../../../Redux/services/UsersApiSlice";
 
 const ContentEditor = dynamic(() => import("./Content"), { ssr: false });
 
 const AddBlog = () => {
   const [handlePostBlogAndNews] = usePostBlogAndNewsMutation();
   const [uploadImage] = useUploadNewsOrBlogImageMutation();
-  const categories = ["news", "blog", "event"];
+  const { data: users, isLoading } = useGetVerifiedUsersQuery();
+  const categories = ["news", "blog"];
   const [content, setContent] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [user, setUser] = useState("");
+  const [isPopular, setIsPopular] = useState(false);
   const [notification, setNotification] = useState({ message: "", type: "" });
 
   const showNotification = (message, type = "success") => {
@@ -34,12 +40,12 @@ const AddBlog = () => {
       prev.includes(category) ? prev.filter((cat) => cat !== category) : [...prev, category]
     );
   };
+
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
       const formData = new FormData();
       formData.append("image", file);
-
       try {
         const response = await uploadImage(formData).unwrap();
         setImageUrl(response.imgUrl);
@@ -53,26 +59,31 @@ const AddBlog = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!title || !content || selectedCategories.length === 0 || !imageUrl) {
+    if (!title || !content || selectedCategories.length === 0 || !imageUrl || !user) {
       showNotification("Please fill in all fields and upload an image.", "error");
       return;
     }
 
     const formData = {
       title,
+      description,
       content,
       category: selectedCategories.join(", "),
       image: imageUrl,
+      user,
+      isPopular,
     };
 
     try {
       await handlePostBlogAndNews(formData).unwrap();
       showNotification("Blog/News published successfully!", "success");
       setTitle("");
+      setDescription("");
       setContent("");
       setSelectedCategories([]);
       setImageUrl("");
+      setUser("");
+      setIsPopular(false);
     } catch (error) {
       showNotification("Failed to publish blog/news", "error");
     }
@@ -97,14 +108,6 @@ const AddBlog = () => {
               <label
                 htmlFor="file-upload"
                 className="w-full h-[10vh] md:size-[12rem] cursor-pointer flex items-center justify-center bg-white text-gray-600 rounded">
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M5 12h14m-7-7v14"
-                  />
-                </svg>
                 <span>Upload Image</span>
               </label>
               {imageUrl && (
@@ -124,8 +127,39 @@ const AddBlog = () => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
-
+              <textarea
+                className="w-full py-3 px-5 outline-none"
+                placeholder="Description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
               <ContentEditor onChange={handleContentChange} />
+
+              <label className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={isPopular}
+                  onChange={() => setIsPopular(!isPopular)}
+                />
+                <span>Mark as Popular</span>
+              </label>
+
+              <select
+                className="p-3 border rounded w-full"
+                value={user}
+                onChange={(e) => setUser(e.target.value)}>
+                <option value="">Select User</option>
+                {isLoading ? (
+                  <option>Loading users...</option>
+                ) : (
+                  users?.users?.map((user) => (
+                    <option key={user._id} value={user._id}>
+                      {user.fullName}
+                    </option>
+                  ))
+                )}
+              </select>
+
               <button type="submit" className="bg-primary-500 py-3 px-5 text-white">
                 Publish
               </button>

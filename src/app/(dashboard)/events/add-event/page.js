@@ -24,6 +24,7 @@ const AddEvent = () => {
     zipCode: "",
   });
   const [imageUrl, setImageUrl] = useState("");
+  const [isPopular, setIsPopular] = useState(false);
   const [notification, setNotification] = useState({ message: "", type: "" });
 
   const showNotification = (message, type = "success") => {
@@ -88,6 +89,7 @@ const AddEvent = () => {
       venue,
       content,
       image: imageUrl,
+      isPopular,
     };
 
     try {
@@ -106,6 +108,8 @@ const AddEvent = () => {
       });
       setContent("");
       setImageUrl("");
+      setIsPopular(false);
+      setSelectedUser("");
     } catch (error) {
       showNotification("Failed to publish event", "error");
     }
@@ -222,6 +226,17 @@ const AddEvent = () => {
                   value={venue.zipCode}
                   onChange={handleVenueChange}
                 />
+              </div>
+
+              <div className="flex items-center gap-3">
+                <label className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    checked={isPopular}
+                    onChange={(e) => setIsPopular(e.target.checked)}
+                  />
+                  <span>Is Popular</span>
+                </label>
               </div>
 
               <ContentEditor onChange={handleContentChange} />
