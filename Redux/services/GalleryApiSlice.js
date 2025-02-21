@@ -30,6 +30,7 @@ export const galleryApiSlice = createApi({
       query: ({ id }) => ({
         url: `/${GALLERY_URL}/${id}`,
       }),
+      invalidatesTags: ["Gallery"],
     }),
     // Update gallery
     updateGallery: build.mutation({

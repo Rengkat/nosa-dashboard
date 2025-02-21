@@ -13,11 +13,11 @@ const Sets = () => {
   const { admin } = useSelector((state) => state.app);
   // console.log(admin);
   const onSelect = (set) => {
-    if (set !== admin?.nosaSet || admin?.role !== "superAdmin") {
-      setIsModelOpen(true);
-      return;
+    if (admin?.role === "superAdmin" || set === admin?.nosaSet) {
+      router.push(`nosa-sets/${set}`);
+    } else {
+      setIsModalOpen(true);
     }
-    router.push(`nosa-sets/${set}`);
   };
   return (
     <div>
