@@ -8,7 +8,6 @@ import { MdEmojiEvents } from "react-icons/md";
 
 const Stats = () => {
   const { data } = useGetStatsQuery();
-  console.log(data);
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 my-5">

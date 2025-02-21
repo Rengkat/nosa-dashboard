@@ -9,6 +9,7 @@ import { setMediaSlice } from "./services/setMediaApiSlice";
 import { setAdminApiSlice } from "./services/SetAminApiSlice";
 import { blogApiSlice } from "./services/BlogsSliceApi";
 import { eventApiSlice } from "./services/EventsApiSlice";
+import { galleryApiSlice } from "./services/GalleryApiSlice";
 export const store = configureStore({
   reducer: {
     app: AppSlice,
@@ -21,6 +22,7 @@ export const store = configureStore({
     [setAdminApiSlice.reducerPath]: setAdminApiSlice.reducer,
     [blogApiSlice.reducerPath]: blogApiSlice.reducer,
     [eventApiSlice.reducerPath]: eventApiSlice.reducer,
+    [galleryApiSlice.reducerPath]: galleryApiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
@@ -32,6 +34,7 @@ export const store = configureStore({
       .concat(setAdminApiSlice.middleware)
       .concat(setMediaSlice.middleware)
       .concat(blogApiSlice.middleware)
-      .concat(eventApiSlice.middleware),
+      .concat(eventApiSlice.middleware)
+      .concat(galleryApiSlice.middleware),
   devTools: true,
 });

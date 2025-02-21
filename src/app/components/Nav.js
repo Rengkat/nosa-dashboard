@@ -10,7 +10,7 @@ const Nav = () => {
       <div className="flex items-center gap-3">
         <ToggleMenu />
         <div className="size-10 lg:size-10">
-          <Image src={"/logo.png"} height={500} width={500} />
+          <Image src={"/logo.png"} height={500} width={500} alt="logo" />
         </div>
       </div>
       <div className="flex items-center gap-5 lg:gap-10 ">
