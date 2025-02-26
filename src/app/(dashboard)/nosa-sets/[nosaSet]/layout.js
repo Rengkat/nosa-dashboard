@@ -1,9 +1,36 @@
-import SubHeading from "@/app/components/SubHeading";
+"use client";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { ActiveLink } from "./ActiveLink";
+import { useSelector } from "react-redux";
 
 const SingleSetLayout = ({ children, params }) => {
+  const { admin } = useSelector((state) => state.app);
+
+  // Check if the admin is either a superadmin or belongs to the specific set
+  const isAuthorized = admin?.role === "superAdmin" || admin?.nosaSet === params?.nosaSet;
+
+  // If not authorized, open the modal
+  if (!isAuthorized) {
+    return (
+      <div className="relative">
+        <div className="absolute bg-[#00000061] backdrop-blur-sm rounded-md inset-0 h-[80vh] grid place-items-center">
+          <div className="bg-white w-[80%] lg:size-[50%] p-10 md:p-5 text-base lg:text-xl text-center flex flex-col justify-center rounded-md">
+            <p> Sorry, You are not authorized to access this NOSA Set.</p>
+            <p> You are only allowed to access your set page!</p>
+            <div className="mt-5">
+              <Link href="/nosa-sets">
+                <button className="bg-primary-500 text-white cursor-pointer py-2 md:py-3 px-4 md:px-6 rounded">
+                  Select Different Set
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="relative">
       <div className="my-[3rem]">

@@ -16,7 +16,7 @@ const Sets = () => {
     if (admin?.role === "superAdmin" || set === admin?.nosaSet) {
       router.push(`nosa-sets/${set}`);
     } else {
-      setIsModalOpen(true);
+      setIsModelOpen(true);
     }
   };
   return (

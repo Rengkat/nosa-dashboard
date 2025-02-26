@@ -50,7 +50,7 @@ const AppSlice = createSlice({
     logoutAdmin: (state) => {
       state.admin = null;
       state.isLogin = false;
-      localStorage.removeItem("admin"); // Clear admin data on logout
+      localStorage.removeItem("admin");
     },
   },
 });

@@ -7,7 +7,7 @@ import { MdDelete, MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import {
   useGetAllSetAdminQuery,
   useRemoveSetAdminMutation,
-} from "../../../../Redux/services/SetAminApiSlice";
+} from "../../../../../Redux/services/SetAminApiSlice";
 import Loading from "@/app/(auth)/loading";
 
 const SetAdmin = () => {

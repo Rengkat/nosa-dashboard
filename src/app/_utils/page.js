@@ -43,15 +43,10 @@ export const links = [
     link: "/gallery",
     icon: <LuGalleryHorizontalEnd />,
   },
-  {
-    name: "showcase",
-    link: "/showcase",
-    icon: <RiSlideshow4Fill />,
-  },
   // {
-  //   name: "achievements",
-  //   link: "/achievements",
-  //   icon: <GiAchievement />,
+  //   name: "showcase",
+  //   link: "/showcase",
+  //   icon: <RiSlideshow4Fill />,
   // },
 ];
 export const TableHeading = ["s/No", "name", "email", "phone", "nosa set", "address"];
